@@ -785,9 +785,9 @@ class Profile extends Component {
 
               <div className="filter-wrapper">
                 <p className="filter-header">Filter by:</p>
-                <div className="filter-media-dropdown-wrapper">
+                <div className="filter-dropdown-wrapper">
                   <div className="fmdh-wrapper">
-                    <p className="filter-media-dropdown-header">Media</p>
+                    <p className="filter-dropdown-header">Media</p>
                   </div>
                   <div className="media-filter-results">
                     <div className="media-results-wrapper">
@@ -806,9 +806,9 @@ class Profile extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="filter-media-dropdown-wrapper">
+                <div className="filter-dropdown-wrapper">
                   <div className="fmdh-wrapper">
-                    <p className="media-dropdown-header">Genre</p>
+                    <p className="filter-dropdown-header">Genre</p>
                   </div>
                   <div className="media-filter-results">
                     <div className="media-results-wrapper">

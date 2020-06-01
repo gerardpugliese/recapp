@@ -1095,7 +1095,7 @@ body {
   width: 6vw;
 }
 
-.filter-media-dropdown-wrapper:hover .media-filter-results {
+.filter-dropdown-wrapper:hover .media-filter-results {
   display: block;
   position: absolute;
   z-index: 4;
@@ -1110,7 +1110,7 @@ body {
   margin: auto;
 }
 
-.filter-media-dropdown-header {
+.filter-dropdown-header {
   font-family: "Palanquin Dark", sans-serif;
   background-color: #333333;
   color: white;
