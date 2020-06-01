@@ -1,0 +1,1976 @@
+html {
+  background-color: #000;
+}
+
+body {
+  background-color: none;
+  background: rgb(0, 0, 0, 0);
+}
+
+/* START OF App.js CLASSES */
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  color: white;
+  margin: 0;
+  background-image: radial-gradient(circle, #232b2b, #000);
+}
+
+.welcome-content {
+  height: 50%;
+  width: fit-content;
+  margin: auto;
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5vh;
+}
+
+.logo-text {
+  display: block;
+  font-size: calc(12px + 8vw);
+  font-family: "Bungee", cursive;
+  margin-bottom: 0;
+}
+
+.logo-icon {
+  display: block;
+  font-size: calc(12px + 8vw);
+  padding-right: 10px;
+}
+
+.welcome-text {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vw;
+  line-height: 1;
+}
+
+.welcome-text-last {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vw;
+  line-height: 0.8;
+  padding-bottom: 5vh;
+}
+
+.welcome-button {
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  background: rgb(18, 18, 18, 0.5);
+  padding: 1vh 2vh;
+  border: 1px white solid;
+  border-radius: 0.2rem;
+  width: 5vw;
+}
+
+.welcome-button:hover {
+  color: white;
+  text-decoration: none;
+  background: rgb(18, 18, 18, 1);
+}
+
+/* END OF App.js CLASSES */
+
+/* START OF ActorRow CLASSES */
+
+.actor-row-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.actor-image {
+  width: 30vh;
+}
+
+.actor-image:hover {
+  cursor: pointer;
+}
+
+.default-img-bkg {
+  background-color: #333333;
+  width: 270px;
+  height: 400px;
+  display: flex;
+}
+
+.actor-default-img {
+  max-width: 100%;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.actor-description {
+  font-family: "Palanquin Dark", sans-serif;
+  background-color: #010101;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.actor-name {
+  font-weight: bold;
+  font-size: 2vh;
+}
+.actor-character {
+  font-size: 2vh;
+  font-style: italic;
+}
+.actor-description p {
+  margin-bottom: 0;
+  color: white;
+}
+
+/* END OF ActorRow CLASSES */
+
+/* START OF ActorView CLASSES */
+
+.wrapper {
+  height: 100%;
+  color: white;
+  background: rgb(0, 0, 0, 0);
+  z-index: 3;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+} /* Also used in MovieView, ShowView */
+
+.results {
+  display: flex;
+  overflow-x: scroll;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.credits-header {
+  display: flex;
+  margin-bottom: 7vh;
+}
+
+.credits-info-wrapper {
+  margin-left: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.credits-info-name {
+  border-bottom: 1px white solid;
+  width: fit-content;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2vw;
+}
+
+.credits-info-birthday {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.2vw;
+}
+
+.credits-info-birthplace {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.2vw;
+}
+
+.credits-info-bio-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.2vw;
+  margin-bottom: 0;
+}
+
+.credits-list-wrapper {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.credits-list-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.6vw;
+  width: fit-content;
+  border-bottom: 1px white solid;
+  margin-bottom: 4vh;
+}
+
+.credits-header-img-wrapper {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.credits-info-bio {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.2vw;
+}
+
+.credits-results {
+  margin-top: 14vh;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.credits-header-img {
+  width: 40vh;
+}
+
+/* END OF ActorView CLASSES */
+
+/* START OF Explore CLASSES */
+
+.explore-wrapper {
+  text-align: center;
+  background-image: radial-gradient(circle, #232b2b, #000);
+  background-size: cover;
+  height: 100%;
+  min-height: 100vh;
+  color: white;
+  margin: 0;
+}
+
+.nowplaying-wrapper {
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  scrollbar-color: #fff;
+}
+
+.nowplaying-movie-wrapper {
+  display: flex;
+  overflow: scroll;
+  padding-bottom: 20px;
+  scrollbar-color: #fff;
+}
+
+.nowplaying-text-wrapper {
+  margin-left: 7vw;
+  margin-right: 7vw;
+  margin-bottom: 2vh;
+  text-align: left;
+  border-bottom: #84142d 3px solid;
+}
+
+.nowplaying-text {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  margin-bottom: 0;
+}
+
+.upcoming-movies-wrapper {
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vw;
+}
+
+.upcoming-text-wrapper {
+  margin-left: 7vw;
+  margin-right: 7vw;
+  margin-bottom: 2vh;
+  text-align: left;
+  border-bottom: #84142d 3px solid;
+}
+
+.upcoming-text {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  margin-bottom: 0;
+}
+
+.upcoming-movie-view {
+  display: flex;
+  overflow: scroll;
+  padding-bottom: 20px;
+}
+
+/* END OF Explore CLASSES */
+
+/* START OF Filter CLASSES */
+
+.media-results {
+  width: fit-content;
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5vh;
+}
+
+/* END OF Filter CLASSES */
+
+/* START OF Genre CLASSES */
+
+.genre {
+  background-color: #333333;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2vh;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+  height: fit-content;
+}
+
+/* END OF Genre CLASSES */
+
+/* START OF Icons CLASSES */
+
+.interested-icon {
+  padding-left: 2vw;
+  padding-right: 3vw;
+}
+
+.interested-icon:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.watched-icon:hover {
+  color: greenyellow;
+  cursor: pointer;
+}
+
+.watched-icon {
+  padding-right: 3vw;
+}
+
+.favorite-icon:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+.orange {
+  color: orange;
+}
+
+/* END OF Icons CLASSES */
+
+/* START OF Landing & ShowLanding CLASSES */
+
+.explore-1-wrapper {
+  height: 100%;
+  min-height: 100vh;
+  color: white;
+  background: rgb(0, 0, 0, 0);
+  margin: 0;
+}
+
+.landing-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.landing-backdrop-overlay {
+  position: absolute;
+  background: linear-gradient(to bottom, rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 1));
+  z-index: 2;
+  height: 100vh;
+  margin-top: 7vh;
+  width: 100vw;
+}
+
+.landing-backdrop img {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  margin-top: 7vh;
+  width: 100vw;
+  object-fit: cover;
+}
+
+.l-content-wrapper {
+  margin-top: 7vh;
+  position: absolute;
+  z-index: 2;
+}
+
+.user-col-2 {
+  margin-top: 2vh;
+  width: 90vw;
+  height: 65vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-left {
+  width: 70%;
+  margin-bottom: auto;
+}
+
+.recent-img-overlay-text {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  color: white;
+  width: fit-content;
+  border-bottom: 3px #84142d solid;
+  margin-bottom: 0;
+}
+
+.landing-recent-movie-title {
+  font-family: "Palanquin Dark", sans-serif;
+  margin-top: 10px;
+  font-size: 3vh;
+  color: white;
+  font-style: italic;
+}
+
+.lists-wrapper {
+  width: 92vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-left: 4vw;
+  margin-right: 4vw;
+  margin-bottom: 10vh;
+}
+
+.lists-wrapper-left {
+  overflow: scroll;
+}
+
+.landing-text-wrapper {
+  margin-bottom: 2vh;
+  text-align: left;
+}
+
+.landing-bottom {
+  margin-top: 2vh;
+}
+
+.landing-text {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  margin-bottom: 0;
+  border-bottom: 3px #84142d solid;
+}
+
+.list-movie-wrapper {
+  display: flex;
+  overflow: scroll;
+}
+/* END OF Landing & ShowLanding CLASSES */
+
+/* START OF Login CLASSES */
+
+.login-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2.5vh;
+  width: 40vw;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-logo-text {
+  display: block;
+  font-size: 10vh;
+  font-family: "Bungee", cursive;
+  margin-bottom: 0;
+}
+
+.login-logo-icon {
+  height: 100%;
+  display: block;
+  font-size: 10vh;
+  padding-right: 10px;
+}
+
+.login-form-wrapper {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-form-input {
+  width: 30vw;
+  margin-bottom: 50px;
+  border-radius: 0.2rem;
+  font-family: "Palanquin Dark", sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  opacity: 0.7;
+  color: #000;
+  font-size: 2vh;
+}
+
+.login-form-label {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+}
+
+.login-form-label-wrapper {
+  width: 30vw;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-wrapper {
+  text-align: center;
+  background-image: radial-gradient(circle, #232b2b, #000);
+  min-height: 100vh;
+  color: white;
+  margin: 0;
+} /* Also used in Register, */
+
+.login-form-button {
+  color: white;
+  background: rgb(18, 18, 18, 0.5);
+  padding: 10px 20px;
+  border-radius: 0.2rem;
+  border-color: #fff;
+  margin-bottom: 2.5vh;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.login-form-button:hover {
+  color: white;
+  text-decoration: none;
+  background: rgb(18, 18, 18, 1);
+}
+
+.login-content-wrapper {
+  position: absolute;
+  z-index: 2;
+} /* Also used in Register */
+
+.l-wrapper {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+}
+
+.login-form-error-wrapper {
+  width: 30vw;
+  height: 3.5vh;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgb(223, 28, 41);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+
+.login-error-text {
+  color: white;
+  font-size: 2.5vh;
+  font-family: "Arial";
+  margin: 0;
+  height: 100%;
+}
+
+.opaque-overlay {
+  position: absolute;
+  background-color: #000;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+} /* Also used in Register */
+
+.welcome-bkg-img {
+  position: absolute;
+  z-index: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+} /* Also used in Register */
+
+.movie-img {
+  width: 100%;
+  z-index: 1;
+  max-height: 100vh;
+  min-height: 50vh;
+  margin: auto;
+} /* Also used in Register */
+
+.bkg-info-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 95vh;
+  margin-left: 5vw;
+  font-family: "Palanquin Dark", sans-serif;
+  font-style: italic;
+} /* Also used in Register */
+
+/* END OF Login CLASSES */
+
+/* START OF MovieRow CLASSES */
+
+.movieRow-wrapper {
+  padding-top: 6px;
+  padding-right: 6px;
+  flex: 0 1 0;
+}
+
+.movieRow {
+  position: relative;
+  padding: 0;
+}
+
+.default-info-wrapper {
+  margin: auto;
+  text-align: center;
+} /* Also in ShowRow */
+
+.default-movie-row-name {
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  font-size: 3vh;
+  margin: auto;
+  width: 100%;
+} /* Also in ShowRow */
+
+.default-movie-row-year {
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  font-size: 3vh;
+  margin: auto;
+  width: 100%;
+}
+
+.nowplaying-img {
+  width: 270px;
+  height: 400px;
+  min-width: 200px;
+  border: 1.5px solid;
+  border-image-source: linear-gradient(to right, #000, #1f1f1e);
+  border-image-slice: 1;
+} /* Also used in ShowRow */
+
+.nowplaying-img:hover {
+  border: 2px white solid;
+  border: 2.5px solid;
+  border-image-source: linear-gradient(to right, #000, #1f1f1e);
+  border-image-slice: 1;
+  cursor: pointer;
+} /* Also used in ShowRow */
+
+.overlay {
+  position: absolute;
+  top: 300px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  width: 270px;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #000;
+  text-align: left;
+}
+
+.movieRow:hover .overlay {
+  opacity: 0.75;
+}
+
+.overlay-content-wrapper {
+  padding-left: 5px;
+  padding-top: 5px;
+  max-height: 75px;
+  max-width: 170px;
+  align-items: center;
+}
+
+.overlay-text {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.75vh;
+  margin-bottom: 5px;
+}
+
+.release-date-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.release-date-icon {
+  font-size: 1.75vh;
+  padding-right: 5px;
+}
+
+.release-date-text {
+  font-size: 1.75vh;
+  font-family: "Palanquin Dark", sans-serif;
+  margin-bottom: 0;
+}
+
+/* END OF MovieRow CLASSES */
+
+/* START OF MovieView & ShowView CLASSES */
+
+.movie-view-backdrop img {
+  position: absolute;
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100vw;
+  object-fit: cover;
+}
+
+.movie-view-overlay {
+  position: absolute;
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 0, 0, 0.1),
+    rgb(0, 0, 0, 1) 70%
+  );
+  z-index: 2;
+  height: 107vh;
+  width: 100vw;
+}
+
+.movie-view-wrapper {
+  margin-top: 14vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 2;
+}
+
+.row-1 {
+  width: 75%;
+  height: 60vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.r1-col-1 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.r1-col-2 {
+  margin-left: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.default-view-poster {
+  width: 35vh;
+  height: 50vh;
+  background: #333333;
+  display: flex;
+  text-align: center;
+}
+
+.default-view-poster-name {
+  margin: auto;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 3vh;
+}
+
+.movie-view-img {
+  width: 40vh;
+}
+
+.movie-title {
+  display: flex;
+  font-size: calc(2px + 2vw);
+  font-family: "Palanquin Dark", sans-serif;
+  margin-bottom: 0;
+  width: fit-content;
+}
+
+.movie-rating {
+  display: flex;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(2px + 1.5vw);
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
+}
+
+.movie-year {
+  font-size: calc(2px + 1.5vw);
+  color: #f1f1f1;
+  display: flex;
+  padding-bottom: 2.5vh;
+}
+
+.movie-year p {
+  font-family: "Palanquin Dark", sans-serif;
+  padding-left: 5px;
+  padding-right: 10px;
+  margin-bottom: 0;
+}
+
+.movie-genres {
+  display: flex;
+}
+
+.movie-director {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(2px + 1.5vw);
+} /* No director is listed in ShowView, so this is unique to MovieView */
+
+.movie-descr {
+  font-size: calc(2px + 1vw);
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.movie-descr p {
+  font-size: calc(2px + 1.5vw);
+  margin-bottom: 5px;
+}
+
+.review-wrapper {
+  display: flex;
+}
+
+.review-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(2px + 1.5vw);
+  padding-right: 1vw;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.user-rating-wrapper {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(2px + 2vw);
+  padding-right: 1vw;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.review-link {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(2px + 1.5vw);
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.review-link:hover {
+  border-bottom: 1px white solid;
+  cursor: pointer;
+}
+
+.row-2 {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
+  margin-bottom: 10vh;
+}
+
+.cast-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 3vh;
+  margin-bottom: 0;
+}
+
+.results-row {
+  display: flex;
+  overflow-x: scroll;
+  border-top: 3px #84142d solid;
+  padding-top: 2vh;
+}
+
+.empty-actors {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 4vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+}
+
+/* END OF MovieView CLASSES */
+
+/* START OF Profile CLASSES */
+
+.profile-bkg-img img {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  top: 0;
+}
+
+.profile-bkg-overlay {
+  position: absolute;
+  background: linear-gradient(to bottom, rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 1));
+  z-index: 2;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+}
+
+.profile-content-wrapper {
+  position: absolute;
+  z-index: 2;
+  width: 100vw;
+}
+
+.profile-row-1 {
+  display: flex;
+  width: 90vw;
+  margin-top: 7vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.profile-image-wrapper {
+  margin-top: 2vh;
+  width: 15vw;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  height: inherit;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.image-name-wrapper {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-image {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 2vh;
+  margin-right: 2vh;
+}
+
+.profile-username {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 4vh;
+  color: white;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-ten-bkg {
+  width: 12vw;
+  height: 6vh;
+  margin: auto;
+  display: flex;
+}
+
+.profile-stats {
+  width: 35vw;
+  height: inherit;
+  padding-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats-header {
+  color: white;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  border-bottom: 3px #84142d solid;
+}
+
+.stats-img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.profile-row-2 {
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-lists-nav {
+  margin-top: 7vh;
+  height: 6vh;
+  background-color: #333333;
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.profile-nav-favorites {
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+}
+
+.profile-nav-favorites-active {
+  background-color: #1f1f1e;
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.profile-nav-favorites:hover {
+  background-color: #1f1f1e;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.profile-nav-interests {
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.profile-nav-interests-active {
+  background-color: #1f1f1e;
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+}
+
+.profile-nav-interests:hover {
+  background-color: #1f1f1e;
+}
+
+.profile-nav-watched {
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+}
+
+.profile-nav-watched-active {
+  background-color: #1f1f1e;
+  height: 100%;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.profile-nav-watched:hover {
+  background-color: #1f1f1e;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.profile-nav-text {
+  color: white;
+  margin: auto;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2vh;
+}
+
+.filter-wrapper {
+  display: flex;
+  margin-top: 4vh;
+}
+
+.filter-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 1.5vw;
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 1vw;
+  width: 6vw;
+}
+
+.filter-media-dropdown-wrapper:hover .media-filter-results {
+  display: block;
+  position: absolute;
+  z-index: 4;
+  cursor: pointer;
+}
+
+.fmdh-wrapper {
+  background-color: #333333;
+  width: 10vw;
+  display: flex;
+  height: 5vh;
+  margin: auto;
+}
+
+.filter-media-dropdown-header {
+  font-family: "Palanquin Dark", sans-serif;
+  background-color: #333333;
+  color: white;
+  margin: auto;
+  font-size: 1.5vh;
+}
+
+.media-filter-results {
+  display: none;
+}
+
+.media-results-wrapper {
+  display: flex;
+  width: 10vw;
+  background-color: grey;
+}
+
+.media-results-wrapper:hover {
+  background-color: #1f1f1e;
+}
+
+.applied-filter-wrapper {
+  border: 1px white solid;
+  border-radius: 5px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 2vw;
+  height: 4vh;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.applied-filter-text {
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 2vh;
+}
+
+.applied-filter-delete {
+  font-family: "Palanquin Dark", sans-serif;
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 2vh;
+  margin-left: 10px;
+}
+
+.applied-filter-delete:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profile-lists-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
+.profile-lists-results {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-favorites {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  color: white;
+  display: flex;
+  overflow-x: scroll;
+  flex-wrap: wrap;
+}
+
+.profile-interests {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  color: white;
+  display: flex;
+  overflow-x: scroll;
+  flex-wrap: wrap;
+}
+
+.profile-watched {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  color: white;
+  display: flex;
+  overflow-x: scroll;
+  flex-wrap: wrap;
+}
+
+/* END OF Profile CLASSES */
+
+/* START OF Rating CLASSES */
+
+.rating {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.red {
+  color: #ed0909;
+}
+
+.yellow {
+  color: #f7ff0d;
+}
+
+.light-green {
+  color: greenyellow;
+}
+.green {
+  color: #00cc18;
+}
+
+/* END OF Rating CLASSES */
+
+/* START OF RatingView CLASSES */
+
+.rating-view-background {
+  position: absolute;
+  z-index: 3;
+  width: 100vw;
+  height: 200vh;
+  background: rgb(0, 0, 0, 0.8);
+}
+
+.rating-view {
+  width: 60vw;
+  height: 60vh;
+  background-color: #1f1f1e;
+  margin: auto;
+  margin-top: 10vh;
+  border-radius: 10px;
+  display: flex;
+}
+
+.rating-view-left-col {
+  width: 30%;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.rating-view-poster {
+  width: 100%;
+}
+
+.rating-view-right-col {
+  width: 60%;
+  margin-right: auto;
+}
+
+.rating-view-row-1 {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-left: 95%;
+}
+
+.rating-view-exit-btn {
+  width: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  margin-top: 10px;
+}
+
+.rating-view-exit-btn:hover {
+  cursor: pointer;
+  font-style: 3.5vh;
+  font-weight: bold;
+}
+
+.rating-view-row-2 {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+}
+
+.rating-view-title {
+  width: fit-content;
+  margin-left: 10%;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.rating-view-year {
+  font-size: 2.5vh;
+  margin-top: auto;
+  margin-bottom: 0;
+  color: lightgrey;
+  margin-left: 0.5vh;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.rating-view-row-3 {
+  width: 60%;
+  height: 20%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slidecontainer {
+  width: 100%;
+  margin-top: 4vh;
+}
+
+.input-range__label--max {
+  display: none;
+}
+
+.input-range__label--min {
+  display: none;
+}
+
+.input-range__label--value {
+  position: absolute !important;
+  top: -4vh !important;
+}
+
+.input-range__label-container {
+  left: -40% !important;
+  position: relative !important;
+}
+
+.input-range__label {
+  font-size: 2vh !important;
+  top: -5vh !important;
+  position: absolute !important;
+}
+
+.input-range__track {
+  height: 1.5vh !important;
+}
+
+.input-range__track--active {
+  background-color: #333333 !important;
+}
+
+.input-range__slider {
+  width: 2vh !important;
+  height: 2vh !important;
+  margin-top: -1.75vh !important;
+  background: #000 !important;
+  border: #000 !important;
+}
+
+.rating-view-row-5 {
+  width: 80%;
+  height: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rating-view-textarea {
+  resize: none;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  color: #000;
+  font-size: 1.5vh;
+  font-family: "Palanquin Dark", sans-serif;
+  padding: 5px;
+}
+
+.rating-view-textarea:focus {
+  outline: none;
+}
+.rating-vew-textarea-header {
+  font-size: 2vh;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.rating-view-row-6 {
+  width: fit-content;
+  height: 10%;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rating-view-submit-btn {
+  width: 10vw;
+  background-color: #333333;
+  height: 75%;
+  display: flex;
+  border-radius: 5px;
+}
+
+.rating-view-submit-btn:hover {
+  background-color: #000;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.rating-view-btn-text {
+  margin: auto;
+  font-size: 2vh;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+/* END OF RatingView CLASSES */
+
+/* START OF Register CLASSES */
+
+.register-logo-text {
+  display: block;
+  font-size: 10vh;
+  font-family: "Bungee", cursive;
+  margin-bottom: 0;
+}
+
+.le-wrapper {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+}
+
+.register-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10vh;
+  padding-top: 2vh;
+}
+
+.register-logo-icon {
+  height: 100%;
+  display: block;
+  font-size: 10vh;
+  padding-right: 10px;
+}
+
+.register-form-error-wrapper {
+  width: 35vw;
+  height: 3.5vh;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgb(223, 28, 41);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+
+.error-text {
+  color: white;
+  font-size: 2.5vh;
+  font-family: "Arial";
+  margin: 0;
+  height: 100%;
+}
+
+.register-form-label-wrapper {
+  width: 35vw;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-form-label {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2.5vh;
+}
+
+.register-form-input {
+  width: 35vw;
+  margin-bottom: 30px;
+  border-radius: 0.2rem;
+  font-family: "Palanquin Dark", sans-serif;
+  padding-left: 3px;
+  padding-right: 3px;
+  opacity: 0.7;
+  font-size: 2vh;
+}
+
+.register-form-button {
+  color: white;
+  background: rgb(18, 18, 18, 0.5);
+  padding: 10px 20px;
+  border-radius: 0.2rem;
+  border-color: #fff;
+  margin-bottom: 2.5vh;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 2vh;
+}
+
+.register-form-button:hover {
+  color: white;
+  text-decoration: none;
+  background: rgb(18, 18, 18, 1);
+}
+
+/* END OF Register CLASSES */
+
+/* START OF ShowRow CLASSES */
+
+.showRow-wrapper {
+  padding-top: 6px;
+  padding-right: 6px;
+}
+
+.showRow {
+  position: relative;
+  padding: 0;
+}
+
+.default-movie-row {
+  background-color: #333333;
+  width: 270px;
+  height: 400px;
+  display: flex;
+  border: 1.5px solid;
+  border-image-source: linear-gradient(to right, #000, #1f1f1e);
+  border-image-slice: 1;
+}
+
+.default-movie-row:hover {
+  cursor: pointer;
+  border: 1px white solid;
+}
+
+/* END OF ShowRow CLASSES */
+
+/* START OF TopTen CLASSES */
+
+.top-ten-background {
+  position: absolute;
+  z-index: 3;
+  width: 100vw;
+  height: 200vh;
+  background: rgb(0, 0, 0, 0.8);
+}
+
+.top-ten {
+  width: 50vw;
+  height: 70vh;
+  background-color: #1f1f1e;
+  margin: auto;
+  margin-top: 10vh;
+  border-radius: 10px;
+}
+
+.top-ten-close-btn {
+  font-size: 2vh;
+  color: white;
+  margin-left: auto;
+  margin-right: 1vw;
+  width: fit-content;
+  height: 5vh;
+  margin-bottom: 0;
+  padding-top: 0.5vw;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.top-ten-close-btn:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.top-ten-title {
+  color: white;
+  font-size: 3vh;
+  height: fit-content;
+  margin-bottom: 0;
+  width: fit-content;
+  margin: auto;
+  position: relative;
+  border-bottom: 3px #84142d solid;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.edit-window {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+}
+
+.edit-window-left-col {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vw;
+}
+
+.edit-window-title {
+  color: white;
+  font-size: 2vh;
+  margin-left: 2vw;
+  margin-bottom: 1vw;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.default-edit-topten-img {
+  width: 35vh;
+  height: 50vh;
+  background-color: black;
+  display: flex;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.edit-window-img {
+  width: 35vh;
+  height: 50vh;
+  margin-left: 2vw;
+  margin-right: 1vw;
+}
+
+.edit-window-right-col {
+  overflow-x: scroll;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: fit-content;
+  text-align: center;
+}
+
+.confirm-wrapper {
+  margin: auto;
+}
+
+.confirm-edit-text {
+  font-size: 2.5vh;
+  color: white;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.edit-window-btn {
+  background-color: black;
+  border-radius: 5px;
+  width: fit-content;
+  height: 5vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-window-btn:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-window-btn-text {
+  color: white;
+  font-size: 2vh;
+  font-family: "Palanquin Dark", sans-serif;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.topten-search-bar-wrapper {
+  border-radius: 20px;
+  padding-left: 5px;
+  background: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: calc(3px + 1vw);
+  width: fit-content;
+}
+
+.topten-search-bar-wrapper i {
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: fit-content;
+}
+
+.search-bar {
+  margin-top: auto;
+  margin-bottom: auto;
+  border: none;
+  background: none;
+  color: white;
+  width: fit-content;
+  padding-left: 5px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  font-family: "Palanquin Dark", sans-serif;
+} /* Also in NavBar */
+
+.search-bar:focus {
+  outline: none;
+}
+
+.topten-search-results {
+  display: flex;
+  overflow-x: scroll;
+  width: 30vw;
+}
+
+.top-ten-results-wrapper {
+  display: flex;
+  overflow-x: scroll;
+  height: 60vh;
+}
+
+.top-ten-default-wrapper:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.top-ten-default {
+  width: 35vh;
+  height: 50vh;
+  background-color: black;
+  display: flex;
+  margin-top: 2vw;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  text-align: center;
+} /* Also in TopTenRow */
+
+.top-ten-default-text {
+  color: white;
+  margin: auto;
+  font-size: 2vh;
+  width: 35vh;
+} /* Also in TopTenRow */
+
+.top-ten-text {
+  color: #fff;
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: calc(4px + 1vw);
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+} /* Also in TopTenRow */
+
+.top-ten-text:hover {
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 3px #84142d solid;
+}
+
+.top-ten-nondefault {
+  width: 35vh;
+  height: 50vh;
+  background-color: black;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  margin-top: 2vw;
+}
+
+.top-ten-nondefault:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.top-ten-img {
+  width: 35vh;
+  height: 50vh;
+} /* Also in TopTenRow */
+
+/* END OF TopTen CLASSES */
+
+/* START OF TopTenResult CLASSES */
+
+.top-ten-result-row {
+  margin-left: 1vw;
+  margin-top: 1vw;
+}
+
+/* END OF TopTenResult CLASSES */
+
+/* START OF TopTenRow CLASSES */
+
+.top-ten-row-wrapper {
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.top-ten-row {
+  margin-left: 2vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+.top-ten-number {
+  color: white;
+  font-size: 1.5vh;
+}
+
+/* END OF TopTenRow CLASSES */
+
+/* START OF NavBar CLASSES */
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  background: rgb(0, 0, 0, 1);
+  z-index: 3;
+  height: 7vh;
+}
+
+.explore-navbar-logo {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 4vw;
+}
+
+.explore-navbar-logo:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.explore-logo-icon {
+  font-size: calc(8px + 1.5vw);
+}
+
+.explore-logo-text {
+  display: block;
+  font-size: calc(8px + 1.5vw);
+  font-family: "Bungee", cursive;
+  margin-bottom: 0;
+  padding-left: 10px;
+}
+
+.navbar-inactive {
+  font-family: "Palanquin Dark", sans-serif;
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: calc(3px + 1vw);
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+}
+
+.navbar-inactive:hover {
+  font-family: "Palanquin Dark", sans-serif;
+  color: #84142d;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.non-user-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.non-user-nav-text {
+  margin: 0;
+}
+
+.search-bar-wrapper {
+  border-radius: 20px;
+  padding-left: 5px;
+  background: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: calc(3px + 1vw);
+}
+
+#search-results {
+  display: none;
+  width: 100vw;
+  height: 65vh;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  z-index: 4;
+  margin-top: 7vh;
+}
+
+.user-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7vh;
+}
+
+.user-nav-wrapper:hover {
+  background-color: grey;
+}
+
+.nav-pic-wrapper {
+  height: 5vh;
+  width: 5vh;
+}
+
+.nav-user-profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-info {
+  padding-right: 4vw;
+}
+
+.navbar-active {
+  font-family: "Palanquin Dark", sans-serif;
+  color: #f0f0f0;
+  font-size: calc(3px + 1vw);
+  padding: 10px;
+  display: flex;
+}
+
+.navbar-active:hover {
+  font-family: "Palanquin Dark", sans-serif;
+  color: #f0f0f0;
+  font-size: calc(3px + 1vw);
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* END OF NavBar CLASSES */
+
+/* START OF SearchBar CLASSES */
+
+.search-results-content {
+  background: rgb(0, 0, 0, 0.8);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 100%;
+  width: 92vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2vh;
+}
+
+.search-results-header {
+  font-family: "Palanquin Dark", sans-serif;
+  font-size: 3vh;
+  border-bottom: 1px solid white;
+  width: fit-content;
+  margin-left: 5vw;
+  color: white;
+}
+
+.search-bar-wrapper i {
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* END OF SearchBar CLASSES */
