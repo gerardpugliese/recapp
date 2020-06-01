@@ -209,7 +209,7 @@ class ShowLanding extends Component {
                 FILMS
               </p>
             </Link>
-            <Link to="/shows" className="navbar-inactive non-user-nav-wrapper">
+            <Link to="/shows" className="navbar-active non-user-nav-wrapper">
               <p
                 className="non-user-nav-text"
                 style={{ "margin-right": "10px" }}

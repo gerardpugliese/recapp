@@ -1869,6 +1869,10 @@ body {
   font-weight: bold;
 }
 
+.navbar-inactive:focus {
+  color: #f0f0f0;
+}
+
 .non-user-nav-wrapper {
   display: flex;
   align-items: center;
@@ -1929,7 +1933,7 @@ body {
 
 .navbar-active {
   font-family: "Palanquin Dark", sans-serif;
-  color: #f0f0f0;
+  color: #84142d;
   font-size: calc(3px + 1vw);
   padding: 10px;
   display: flex;
@@ -1937,7 +1941,7 @@ body {
 
 .navbar-active:hover {
   font-family: "Palanquin Dark", sans-serif;
-  color: #f0f0f0;
+  color: #84142d;
   font-size: calc(3px + 1vw);
   padding: 10px;
   font-weight: bold;

@@ -324,10 +324,7 @@ class Landing extends Component {
 
               <p className="explore-logo-text">RECAPP</p>
             </Link>
-            <Link
-              to="/landing"
-              className="navbar-inactive non-user-nav-wrapper"
-            >
+            <Link to="/landing" className="navbar-active non-user-nav-wrapper">
               <p
                 className="non-user-nav-text"
                 style={{ "margin-left": "10px" }}
