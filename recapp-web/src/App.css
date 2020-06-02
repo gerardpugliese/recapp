@@ -1568,6 +1568,28 @@ body {
   border-radius: 10px;
 }
 
+.top-ten-btn-row {
+  display: flex;
+}
+
+.top-ten-back-btn {
+  font-size: 2vh;
+  color: white;
+  margin-left: 1vw;
+  margin-right: auto;
+  width: fit-content;
+  height: 5vh;
+  margin-bottom: 0;
+  padding-top: 0.5vw;
+  font-family: "Palanquin Dark", sans-serif;
+}
+
+.top-ten-back-btn:hover {
+  font-weight: bold;
+  cursor: pointer;
+  color: #84142d;
+}
+
 .top-ten-close-btn {
   font-size: 2vh;
   color: white;
@@ -1583,6 +1605,7 @@ body {
 .top-ten-close-btn:hover {
   font-weight: bold;
   cursor: pointer;
+  color: #84142d;
 }
 
 .top-ten-title {

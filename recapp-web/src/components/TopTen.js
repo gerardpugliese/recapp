@@ -110,6 +110,17 @@ class TopTen extends Component {
     });
   }
 
+  backEditWindow() {
+    this.setState({
+      show_edit_window: false,
+      edit_item: {
+        name: "",
+        img: "",
+        number: "",
+      },
+    });
+  }
+
   showConfirmEdit(name, img, number, id) {
     this.setState({
       show_confirm_edit: true,
@@ -142,12 +153,22 @@ class TopTen extends Component {
     return (
       <div className="top-ten-background">
         <div className="top-ten">
-          <p
-            className="top-ten-close-btn"
-            onClick={() => this.props.hide_function()}
-          >
-            X
-          </p>
+          <div className="top-ten-btn-row">
+            {this.state.show_edit_window === true && (
+              <p
+                className="top-ten-back-btn"
+                onClick={() => this.backEditWindow()}
+              >
+                <i class="fas fa-arrow-left"></i>
+              </p>
+            )}
+            <p
+              className="top-ten-close-btn"
+              onClick={() => this.perops.hide_function()}
+            >
+              <i class="fas fa-times"></i>
+            </p>
+          </div>
           <div style={{ height: "fit-content", display: "flex" }}>
             <p className="top-ten-title">Your Top Ten {this.props.info}</p>
           </div>
