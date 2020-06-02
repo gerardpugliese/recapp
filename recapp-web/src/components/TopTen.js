@@ -164,7 +164,7 @@ class TopTen extends Component {
             )}
             <p
               className="top-ten-close-btn"
-              onClick={() => this.perops.hide_function()}
+              onClick={() => this.props.hide_function()}
             >
               <i class="fas fa-times"></i>
             </p>
