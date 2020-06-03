@@ -79,12 +79,20 @@ class Explore extends Component {
     return (
       <div className="explore-wrapper">
         <Navbar className="title-bar">
-          <Nav className="mr-auto">
-            <Link to="/" className="explore-navbar-logo">
-              <i className="fas fa-video  align-vertically explore-logo-icon"></i>
-              <p className="explore-logo-text">RECAPP</p>
-            </Link>
-          </Nav>
+          <Animated
+            animationIn="slideInLeft"
+            animationInDuration={600}
+            animationOut="fadeOut"
+            isVisible={true}
+            className="mr-auto"
+          >
+            <Nav className="mr-auto">
+              <Link to="/" className="explore-navbar-logo">
+                <i className="fas fa-video  align-vertically explore-logo-icon"></i>
+                <p className="explore-logo-text">RECAPP</p>
+              </Link>
+            </Nav>
+          </Animated>
           <Animated
             animationIn="slideInRight"
             animationInDuration={800}

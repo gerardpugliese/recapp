@@ -55,44 +55,58 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="navbar-wrapper">
-          <Navbar className="title-bar">
-            <Nav className="mr-auto">
-              <Link to="/" className="explore-navbar-logo">
-                <i className="fas fa-video  align-vertically explore-logo-icon"></i>
-                <p className="explore-logo-text explore-logo-text">RECAPP</p>
-              </Link>
-            </Nav>
-            <Animated
-              animationIn="slideInRight"
-              animationInDuration={600}
-              animationOut="fadeOut"
-              isVisible={true}
-              className="ml-auto"
-            >
-              <Nav>
-                <Link to="/login" className="navbar-inactive">
-                  SIGN IN
-                </Link>
-                <Link to="/register" className="navbar-inactive">
-                  REGISTER
-                </Link>
-                <Link to="/explore" className="navbar-inactive">
-                  EXPLORE
-                </Link>
-              </Nav>
-            </Animated>
-          </Navbar>
-        </div>
         <div className="wrapper">
+          <div className="navbar-wrapper">
+            <Navbar className="title-bar">
+              <Animated
+                animationIn="slideInLeft"
+                animationInDuration={600}
+                animationOut="fadeOut"
+                isVisible={true}
+                className="mr-auto"
+              >
+                <Nav>
+                  <Link to="/" className="explore-navbar-logo">
+                    <i className="fas fa-video  align-vertically explore-logo-icon"></i>
+                    <p className="explore-logo-text explore-logo-text">
+                      RECAPP
+                    </p>
+                  </Link>
+                </Nav>
+              </Animated>
+              <Animated
+                animationIn="slideInRight"
+                animationInDuration={600}
+                animationOut="fadeOut"
+                isVisible={true}
+                className="ml-auto"
+              >
+                <Nav>
+                  <Link to="/login" className="navbar-inactive">
+                    SIGN IN
+                  </Link>
+                  <Link to="/register" className="navbar-inactive">
+                    REGISTER
+                  </Link>
+                  <Link to="/explore" className="navbar-inactive">
+                    EXPLORE
+                  </Link>
+                </Nav>
+              </Animated>
+            </Navbar>
+          </div>
           <div className="welcome-content">
             <div className="logo-wrapper">
               <i className="fas fa-video logo-icon align-vertically"></i>
               <p className="logo-text">RECAPP</p>
             </div>
-            <p className="welcome-text">Keep track of movies you've watched.</p>
+            <p className="welcome-text">
+              Track movies and shows you've watched.
+            </p>
             <p className="welcome-text">Create a watch list.</p>
-            <p className="welcome-text-last">Get new recommendations daily.</p>
+            <p className="welcome-text-last">
+              Display your all time favorites.
+            </p>
             <Link to="/register" className="welcome-button">
               GET STARTED
             </Link>

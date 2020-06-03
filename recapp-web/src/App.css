@@ -21,7 +21,7 @@ body {
   height: 50%;
   width: fit-content;
   margin: auto;
-  margin-top: 25vh;
+  margin-top: 18vh;
   margin-bottom: 25vh;
   margin-left: auto;
   margin-right: auto;
@@ -50,13 +50,13 @@ body {
 .welcome-text {
   font-family: "Palanquin Dark", sans-serif;
   font-size: 2.5vw;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .welcome-text-last {
   font-family: "Palanquin Dark", sans-serif;
   font-size: 2.5vw;
-  line-height: 0.8;
+  line-height: 1.5;
   padding-bottom: 5vh;
 }
 
@@ -74,6 +74,10 @@ body {
   color: white;
   text-decoration: none;
   background: rgb(18, 18, 18, 1);
+}
+
+.bkg-info-text {
+  font-size: 1.5vh;
 }
 
 /* END OF App.js CLASSES */
@@ -548,7 +552,7 @@ body {
   width: 40vw;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10vh;
+  margin-top: 12vh;
 }
 
 .login-form-error-wrapper {
@@ -1499,6 +1503,7 @@ body {
   padding-right: 3px;
   opacity: 0.7;
   font-size: 2vh;
+  color: #000;
 }
 
 .register-form-button {
