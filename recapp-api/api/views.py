@@ -3,10 +3,24 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
-from .models import Movie, Rating, MovieBackground, Mark, UserProfile, TopTen
+from .models import Movie, Rating, MovieBackground, Mark, UserProfile, TopTen, AppWideImages
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import MovieSerializer, RatingSerializer, UserSerializer, MovieBackgroundSerializer, MarkSerializer, UserProfileSerializer, TopTenSerializer
+from .serializers import MovieSerializer, RatingSerializer, UserSerializer, MovieBackgroundSerializer, MarkSerializer, UserProfileSerializer, TopTenSerializer, AppWideImagesSerializer
 from rest_framework.authentication import TokenAuthentication
+
+class AppWideImagesViewSet(viewsets.ModelViewSet):
+    queryset = AppWideImages.objects.all()
+    serializer_class = AppWideImagesSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+
+    @action(detail=False, methods=['GET'])
+    def get_rating_images(self, request, pk=None):
+        images = AppWideImages.objects.get(id=1)
+        print(images)
+        serializer = AppWideImagesSerializer(images, many=False)
+        response = {"rating_images": serializer.data}
+        return Response(response, status=status.HTTP_200_OK)
 
 class TopTenViewSet(viewsets.ModelViewSet):
     queryset = TopTen.objects.all()

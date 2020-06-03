@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, Rating, MovieBackground, Mark, UserProfile, TopTen 
+from .models import Movie, Rating, MovieBackground, Mark, UserProfile, TopTen, AppWideImages
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
@@ -23,6 +23,11 @@ class MarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mark
         fields = ('id', 'user', 'item_id', 'media_type', 'state', 'is_favorite', 'rating', 'review')
+
+class AppWideImagesSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = AppWideImages
+        fields = ('id', 'imdb_image', 'rotten_tomatoes_image')
 
 class TopTenSerializer(serializers.ModelSerializer):
     class Meta:

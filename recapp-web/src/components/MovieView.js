@@ -35,7 +35,9 @@ class MovieView extends Component {
     movie_actors: [],
     movie_crew: [],
     movie_genres: [],
-    movie_rating: "",
+    movie_tmdb_rating: "",
+    movie_imdb_rating: "",
+    movie_rottentomatoes_rating: "",
     movie_release: "",
     movie_year: "",
     similar_movies: [],
@@ -48,6 +50,8 @@ class MovieView extends Component {
     search_results: [],
     show_rating: false,
     rating_updated: false,
+    imdb_img: "",
+    rottentomatoes_img: "",
   };
 
   showRating() {
@@ -71,6 +75,28 @@ class MovieView extends Component {
       });
       console.log(this.state.user_movie_review);
     }
+  }
+
+  getRatingImages() {
+    var results = "";
+    const urlString = "http://127.0.0.1:8000/api/images/get_rating_images/";
+    fetch(urlString, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${this.state.token}`,
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        results = res.rating_images;
+        console.log(results);
+        this.setState({
+          imdb_img: "http://127.0.0.1:8000" + results.imdb_image,
+          rottentomatoes_img:
+            "http://127.0.0.1:8000" + results.rotten_tomatoes_image,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   getProfileInformation() {
@@ -124,14 +150,15 @@ class MovieView extends Component {
   }
 
   getMovieInfo() {
+    var imdbID = "";
     const movieInfoURL = `https://api.themoviedb.org/3/movie/${this.state.movie_id}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
-    //console.log(movieInfoURL);
     fetch(movieInfoURL, {
       method: "GET",
     })
       .then((resp) => resp.json())
       .then((res) => {
         const results = res;
+        imdbID = results.imdb_id;
         var poster =
           "https://image.tmdb.org/t/p/original" + results.poster_path;
         var backdrop =
@@ -141,16 +168,53 @@ class MovieView extends Component {
           movie_img: poster,
           movie_desc: results.overview,
           movie_runtime: results.runtime,
-          movie_rating: results.vote_average,
+          movie_tmdb_rating: results.vote_average,
           movie_gotten: true,
           movie_genres: results.genres,
           movie_backdrop: backdrop,
           movie_release: results.release_date,
           movie_year: results.release_date.split("-")[0],
         });
+        this.getIMDBInfo(imdbID);
       })
       .catch((err) => console.log(err));
   }
+
+  getIMDBInfo(imdbID) {
+    console.log(imdbID);
+    var imdb_rating = "";
+    var rottentomatoes_rating = "";
+    var director = "";
+    const imdbInfoURL = `http://www.omdbapi.com/?i=${imdbID}&apikey=f8dd8e76`;
+    console.log(imdbInfoURL);
+    fetch(imdbInfoURL, {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        console.log(res.Director);
+        director = res.Director;
+        console.log(res.Ratings);
+        res.Ratings.forEach((rating) => {
+          console.log(rating);
+          if (rating.Source == "Rotten Tomatoes") {
+            console.log("in rotten tomates value");
+            rottentomatoes_rating = rating.Value;
+          } else if (rating.Source == "Internet Movie Database") {
+            console.log("in imdb rating");
+            imdb_rating = rating.Value;
+            imdb_rating = imdb_rating.split("/")[0];
+          }
+        });
+        this.setState({
+          movie_imdb_rating: imdb_rating,
+          movie_rottentomatoes_rating: rottentomatoes_rating,
+          movie_director: director,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   getSimilarMovie() {
     var similar = [];
     const movieInfoURL = `https://api.themoviedb.org/3/movie/${this.state.movie_id}/recommendations?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US&include_image_language=en,null`;
@@ -181,7 +245,6 @@ class MovieView extends Component {
   getMovieCredits() {
     var movie_actors = [];
     const movieInfoURL = `https://api.themoviedb.org/3/movie/${this.state.movie_id}/credits?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
-    //console.log(movieInfoURL);
     fetch(movieInfoURL, {
       method: "GET",
     })
@@ -189,7 +252,6 @@ class MovieView extends Component {
       .then((res) => {
         const results = res;
         var cast = results.cast;
-        var crew = results.crew;
         var cast_cap = 0;
         if (cast.length <= 10) {
           cast_cap = cast.length;
@@ -198,10 +260,6 @@ class MovieView extends Component {
         }
         var counter = 0;
         do {
-          if (crew[counter].job === "Director") {
-            this.setState({ movie_director: crew[counter].name });
-          }
-
           if (counter < cast_cap) {
             var current_cast = cast[counter];
             var image_path =
@@ -222,7 +280,6 @@ class MovieView extends Component {
         } while (counter <= cast_cap - 1);
         this.setState({
           movie_actors: movie_actors,
-          //movie_crew: crew
         });
       })
       .catch((err) => console.log(err));
@@ -304,6 +361,7 @@ class MovieView extends Component {
     this.getSimilarMovie();
     this.getMovieState();
     this.getMovieCredits();
+    this.getRatingImages();
   }
 
   render() {
@@ -430,7 +488,18 @@ class MovieView extends Component {
                 <div className="r1-col-2">
                   <p className="movie-title">{this.state.movie_name} </p>
                   <div className="movie-rating">
-                    Rating: <Rating rating={this.state.movie_rating} />
+                    <img
+                      className="rating-img-imdb"
+                      alt="IMDb"
+                      src={this.state.imdb_img}
+                    />{" "}
+                    <Rating rating={this.state.movie_imdb_rating} />
+                    <img
+                      className="rating-img-rotten-tomatoes"
+                      alt="Rotten Tomatoes"
+                      src={this.state.rottentomatoes_img}
+                    />
+                    <Rating rating={this.state.movie_rottentomatoes_rating} />
                     <Icons
                       item_id={this.state.movie_id}
                       state={this.state.movie_state}

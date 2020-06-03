@@ -892,6 +892,20 @@ body {
   margin-bottom: 4vh;
 }
 
+.rating-img-rotten-tomatoes {
+  width: 2vw;
+  height: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.rating-img-imdb {
+  width: 3vw;
+  height: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 /* END OF MovieView CLASSES */
 
 /* START OF Profile CLASSES */

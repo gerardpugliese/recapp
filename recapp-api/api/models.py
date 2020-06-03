@@ -26,6 +26,10 @@ def create_profile(sender, **kwargs):
 
 post_save.connect(create_profile, sender=User)
 
+class AppWideImages(models.Model):
+    imdb_image = models.ImageField(upload_to='default_image', blank=True)
+    rotten_tomatoes_image = models.ImageField(upload_to='default_image', blank=True)
+
 class TopTen(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item_id=models.CharField(max_length=30)

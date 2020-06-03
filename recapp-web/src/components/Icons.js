@@ -169,7 +169,6 @@ class Icons extends Component {
     return (
       <React.Fragment>
         <div className="interested-icon-wrapper">
-          {console.log(this.state.item_state)}
           {this.state.item_state === 1 ? (
             <i
               className="fas fa-eye interested-icon orange"
