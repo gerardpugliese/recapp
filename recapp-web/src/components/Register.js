@@ -102,45 +102,30 @@ class Register extends Component {
       <div className="login-wrapper">
         <div className="login-content-wrapper">
           <Navbar className="title-bar">
-            <Animated
-              animationIn="slideInLeft"
-              animationInDuration={600}
-              animationOut="fadeOut"
-              isVisible={true}
-              className="mr-auto"
-            >
-              <Nav>
-                <Link to="/" className="explore-navbar-logo">
-                  <i className="fas fa-video  align-vertically explore-logo-icon"></i>
-                  <p className="explore-logo-text">RECAPP</p>
-                </Link>
-              </Nav>
-            </Animated>
-            <Animated
-              animationIn="slideInRight"
-              animationInDuration={600}
-              animationOut="fadeOut"
-              isVisible={true}
-              className="ml-auto"
-            >
-              <Nav>
-                <Link
-                  to="/login"
-                  className="navbar-inactive non-user-nav-wrapper"
-                >
-                  SIGN IN
-                </Link>
-                <Link to="/register" className="navbar-active">
-                  REGISTER
-                </Link>
-                <Link
-                  to="/explore"
-                  className="navbar-inactive non-user-nav-wrapper"
-                >
-                  EXPLORE
-                </Link>
-              </Nav>
-            </Animated>
+            <Nav className="mr-auto">
+              <Link to="/" className="explore-navbar-logo">
+                <i className="fas fa-video  align-vertically explore-logo-icon"></i>
+                <p className="explore-logo-text">RECAPP</p>
+              </Link>
+            </Nav>
+
+            <Nav className="ml-auto">
+              <Link
+                to="/login"
+                className="navbar-inactive non-user-nav-wrapper"
+              >
+                SIGN IN
+              </Link>
+              <Link to="/register" className="navbar-active">
+                REGISTER
+              </Link>
+              <Link
+                to="/explore"
+                className="navbar-inactive non-user-nav-wrapper"
+              >
+                EXPLORE
+              </Link>
+            </Nav>
           </Navbar>
           <div className="le-wrapper">
             <div className="register-logo-wrapper">

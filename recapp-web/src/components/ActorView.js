@@ -217,73 +217,54 @@ class ActorView extends Component {
           className="title-bar"
           style={{ position: "fixed", top: 0, padding: 0 }}
         >
-          <Animated
-            animationIn="slideInLeft"
-            animationInDuration={600}
-            animationOut="fadeOut"
-            isVisible={true}
-            className="mr-auto"
-          >
-            <Nav>
-              <Link to="/landing" className="explore-navbar-logo">
-                <i className="fas fa-video  explore-logo-icon align-vertically"></i>
+          <Nav className="mr-auto">
+            <Link to="/landing" className="explore-navbar-logo">
+              <i className="fas fa-video  explore-logo-icon align-vertically"></i>
 
-                <p className="explore-logo-text">RECAPP</p>
-              </Link>
-              <Link
-                to="/landing"
-                className="navbar-inactive non-user-nav-wrapper"
+              <p className="explore-logo-text">RECAPP</p>
+            </Link>
+            <Link
+              to="/landing"
+              className="navbar-inactive non-user-nav-wrapper"
+            >
+              <p
+                className="non-user-nav-text"
+                style={{ "margin-left": "10px" }}
               >
-                <p
-                  className="non-user-nav-text"
-                  style={{ "margin-left": "10px" }}
-                >
-                  FILMS
-                </p>
-              </Link>
-              <Link
-                to="/shows"
-                className="navbar-inactive non-user-nav-wrapper"
+                FILMS
+              </p>
+            </Link>
+            <Link to="/shows" className="navbar-inactive non-user-nav-wrapper">
+              <p
+                className="non-user-nav-text"
+                style={{ "margin-right": "10px" }}
               >
-                <p
-                  className="non-user-nav-text"
-                  style={{ "margin-right": "10px" }}
-                >
-                  TV SHOWS
-                </p>
-              </Link>
-              <div className="search-bar-wrapper">
-                <i className="fas fa-search"></i>
-                <input
-                  className="search-bar"
-                  placeholder="Search..."
-                  onClick={() => {
-                    document.getElementById("search-results").style.display =
-                      "block";
-                  }}
-                  onChange={this.searchChangeHandler.bind(this)}
-                ></input>
+                TV SHOWS
+              </p>
+            </Link>
+            <div className="search-bar-wrapper">
+              <i className="fas fa-search"></i>
+              <input
+                className="search-bar"
+                placeholder="Search..."
+                onClick={() => {
+                  document.getElementById("search-results").style.display =
+                    "block";
+                }}
+                onChange={this.searchChangeHandler.bind(this)}
+              ></input>
+            </div>
+          </Nav>
+          <Nav className="ml-auto nav-right nav-info ">
+            <Link to="/profile" className="navbar-inactive user-nav-wrapper ">
+              <div className="nav-pic-wrapper">
+                <img
+                  className="nav-user-profile-pic"
+                  src={this.state.user_profile.image}
+                />
               </div>
-            </Nav>
-          </Animated>
-          <Animated
-            animationIn="slideInRight"
-            animationInDuration={800}
-            animationOut="fadeOut"
-            isVisible={true}
-            className="ml-auto nav-right"
-          >
-            <Nav className="nav-info ">
-              <Link to="/profile" className="navbar-inactive user-nav-wrapper ">
-                <div className="nav-pic-wrapper">
-                  <img
-                    className="nav-user-profile-pic"
-                    src={this.state.user_profile.image}
-                  />
-                </div>
-              </Link>
-            </Nav>
-          </Animated>
+            </Link>
+          </Nav>
         </Navbar>
         <div id="search-results">
           <Animated
