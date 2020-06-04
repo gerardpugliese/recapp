@@ -7,6 +7,9 @@ import ShowRow from "./ShowRow";
 import TopTen from "./TopTen";
 import Filter from "./Filter";
 import { Animated } from "react-animated-css";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 let list_to_filter_new = [];
 let list_of_filters_new = [];
@@ -51,6 +54,7 @@ class Profile extends Component {
     filters: [],
     filters_to_apply: [],
     show_top_ten: false,
+    account_dropdown_visible: false,
   };
 
   setTopTen(name, img, number, id, media_type) {
@@ -94,21 +98,6 @@ class Profile extends Component {
       .then((res) => {
         console.log(res.TopTens);
         let toptens = res.TopTens;
-        /*toptens.forEach((item) => {
-          const toptenrow = (
-            <TopTenRow
-              name={item.title}
-              img={item.img_link}
-              number={item.number}
-            />
-          );
-          console.log(item);
-          if (item.media_type === "movie") {
-            top_ten_movies[item.number - 1] = toptenrow;
-          } else {
-            top_ten_shows[item.number - 1] = toptenrow;
-          }
-        });*/
         toptens.forEach((movie, index) => {
           if (movie.media_type === "Movie") {
             if (movie.number - 1 === 0) {
@@ -531,6 +520,22 @@ class Profile extends Component {
     this.setState({ show_top_ten: false });
   }
 
+  showAccountDropdown() {
+    console.log("in show account dropdown");
+    this.setState({ account_dropdown_visible: true });
+  }
+
+  hideAccountDropdown() {
+    let length = document.querySelectorAll(":hover").length;
+    if (
+      document.querySelectorAll(":hover")[length - 1].className !==
+      "account-logout-btn"
+    ) {
+      this.setState({ account_dropdown_visible: false });
+    }
+    console.log(document.querySelectorAll(":hover")[length - 1].className);
+  }
+
   updateTopTen(top_ten, type) {
     if (type == "Movies") {
       this.setState({ top_ten_movies: top_ten });
@@ -556,13 +561,19 @@ class Profile extends Component {
     }
   }
 
+  logout() {
+    cookies.remove("recapp-token", { path: "/" });
+    cookies.remove("recapp-username", { path: "/" });
+    window.location.href = "/";
+  }
+
   render() {
     return (
       <React.Fragment>
         <div className="profile-wrapper">
           <Navbar
             className="title-bar"
-            style={{ position: "fixed", top: 0, padding: 0 }}
+            style={{ position: "fixed", top: 0, padding: 0, marginBottom: 0 }}
           >
             <Nav className="mr-auto">
               <Link to="/landing" className="explore-navbar-logo">
@@ -595,6 +606,7 @@ class Profile extends Component {
                   className="search-bar"
                   placeholder="Search..."
                   onClick={() => {
+                    console.log(document.getElementById("search-results"));
                     document.getElementById("search-results").style.display =
                       "block";
                   }}
@@ -603,7 +615,12 @@ class Profile extends Component {
               </div>
             </Nav>
             <Nav className="ml-auto nav-right nav-info">
-              <Link to="/profile" className="navbar-active user-nav-wrapper ">
+              <Link
+                to="/profile"
+                className="navbar-active user-nav-wrapper "
+                onMouseEnter={() => this.showAccountDropdown()}
+                onMouseLeave={() => this.hideAccountDropdown()}
+              >
                 <div className="nav-pic-wrapper">
                   <img
                     className="nav-user-profile-pic"
@@ -613,6 +630,18 @@ class Profile extends Component {
               </Link>
             </Nav>
           </Navbar>
+          {this.state.account_dropdown_visible && (
+            <div id="account-dropdown">
+              <div
+                className="account-dropdown-item"
+                onMouseLeave={() => this.hideAccountDropdown()}
+              >
+                <p className="account-logout-btn" onClick={() => this.logout()}>
+                  LOG OUT
+                </p>
+              </div>
+            </div>
+          )}
 
           <div id="search-results">
             <Animated

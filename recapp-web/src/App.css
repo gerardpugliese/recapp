@@ -1095,7 +1095,7 @@ body {
   color: white;
   margin: auto;
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 2vh;
+  font-size: 2vw;
 }
 
 .filter-wrapper {
@@ -1944,6 +1944,7 @@ body {
   position: fixed;
   z-index: 4;
   margin-top: 7vh;
+  top: 0;
 }
 
 .user-nav-wrapper {
@@ -1951,15 +1952,17 @@ body {
   align-items: center;
   justify-content: center;
   height: 7vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
 .user-nav-wrapper:hover {
-  background-color: grey;
+  background-color: #333333;
 }
 
 .nav-pic-wrapper {
-  height: 5vh;
-  width: 5vh;
+  height: 4vw;
+  width: 4vw;
 }
 
 .nav-user-profile-pic {
@@ -1977,7 +1980,6 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
   font-size: calc(3px + 1vw);
-  padding: 10px;
   display: flex;
 }
 
@@ -1985,8 +1987,44 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
   font-size: calc(3px + 1vw);
-  padding: 10px;
-  font-weight: bold;
+}
+
+#account-dropdown {
+  width: 100vw;
+  margin-left: auto;
+  position: fixed;
+  margin-top: 7vh;
+  top: 0;
+  z-index: 3;
+  display: block;
+}
+
+.account-dropdown-item {
+  background-color: grey;
+  margin-left: auto;
+  margin-right: 4vw;
+  width: 6vw;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+}
+
+.account-dropdown-item:hover {
+  background-color: #333333;
+  cursor: pointer;
+}
+
+.account-logout-btn {
+  color: #fff;
+  font-size: 12px;
+  font-family: "Palanquin Dark", sans-serif;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  margin: auto;
+}
+
+.account-logout-btn:hover {
+  color: red;
 }
 
 /* END OF NavBar CLASSES */

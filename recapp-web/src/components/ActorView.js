@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 import ShowRow from "./ShowRow";
 import MovieRow from "./MovieRow";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 class ActorView extends Component {
   constructor(props) {
@@ -28,6 +31,7 @@ class ActorView extends Component {
     actor_deathday: "",
     actor_birthplace: "",
     actor_img: "",
+    account_dropdown_visible: false,
   };
 
   getProfileInformation() {
@@ -210,6 +214,28 @@ class ActorView extends Component {
     this.getActorCredits();
   }
 
+  logout() {
+    cookies.remove("recapp-token", { path: "/" });
+    cookies.remove("recapp-username", { path: "/" });
+    window.location.href = "/";
+  }
+
+  showAccountDropdown() {
+    console.log("in show account dropdown");
+    this.setState({ account_dropdown_visible: true });
+  }
+
+  hideAccountDropdown() {
+    let length = document.querySelectorAll(":hover").length;
+    if (
+      document.querySelectorAll(":hover")[length - 1].className !==
+      "account-logout-btn"
+    ) {
+      this.setState({ account_dropdown_visible: false });
+    }
+    console.log(document.querySelectorAll(":hover")[length - 1].className);
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -256,7 +282,12 @@ class ActorView extends Component {
             </div>
           </Nav>
           <Nav className="ml-auto nav-right nav-info ">
-            <Link to="/profile" className="navbar-inactive user-nav-wrapper ">
+            <Link
+              to="/profile"
+              className="navbar-inactive user-nav-wrapper "
+              onMouseEnter={() => this.showAccountDropdown()}
+              onMouseLeave={() => this.hideAccountDropdown()}
+            >
               <div className="nav-pic-wrapper">
                 <img
                   className="nav-user-profile-pic"
@@ -266,6 +297,18 @@ class ActorView extends Component {
             </Link>
           </Nav>
         </Navbar>
+        {this.state.account_dropdown_visible && (
+          <div id="account-dropdown">
+            <div
+              className="account-dropdown-item"
+              onMouseLeave={() => this.hideAccountDropdown()}
+            >
+              <p className="account-logout-btn" onClick={() => this.logout()}>
+                LOG OUT
+              </p>
+            </div>
+          </div>
+        )}
         <div id="search-results">
           <Animated
             animationIn="fadeIn"

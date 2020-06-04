@@ -5,7 +5,9 @@ import { Animated } from "react-animated-css";
 import MovieRow from "./MovieRow";
 import ShowRow from "./ShowRow";
 import { withCookies } from "react-cookie";
-import Profile from "./Profile";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 class Landing extends Component {
   constructor(props) {
@@ -30,6 +32,7 @@ class Landing extends Component {
     most_recent_movie: "",
     similar_movies: [],
     search_results: [],
+    account_dropdown_visible: false,
   };
 
   loadMovies() {
@@ -263,8 +266,30 @@ class Landing extends Component {
     if (this.state.token) {
       this.getProfileInformation();
     } else {
-      window.href.location("/login");
+      window.location.href = "/login";
     }
+  }
+
+  logout() {
+    cookies.remove("recapp-token", { path: "/" });
+    cookies.remove("recapp-username", { path: "/" });
+    window.location.href = "/";
+  }
+
+  showAccountDropdown() {
+    console.log("in show account dropdown");
+    this.setState({ account_dropdown_visible: true });
+  }
+
+  hideAccountDropdown() {
+    let length = document.querySelectorAll(":hover").length;
+    if (
+      document.querySelectorAll(":hover")[length - 1].className !==
+      "account-logout-btn"
+    ) {
+      this.setState({ account_dropdown_visible: false });
+    }
+    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   performSearch(searchTerm) {
@@ -354,7 +379,12 @@ class Landing extends Component {
             </div>
           </Nav>
           <Nav className="ml-auto nav-right nav-info">
-            <Link to="/profile" className="navbar-active user-nav-wrapper ">
+            <Link
+              to="/profile"
+              className="navbar-active user-nav-wrapper "
+              onMouseEnter={() => this.showAccountDropdown()}
+              onMouseLeave={() => this.hideAccountDropdown()}
+            >
               <div className="nav-pic-wrapper">
                 <img
                   className="nav-user-profile-pic"
@@ -364,6 +394,18 @@ class Landing extends Component {
             </Link>
           </Nav>
         </Navbar>
+        {this.state.account_dropdown_visible && (
+          <div id="account-dropdown">
+            <div
+              className="account-dropdown-item"
+              onMouseLeave={() => this.hideAccountDropdown()}
+            >
+              <p className="account-logout-btn" onClick={() => this.logout()}>
+                LOG OUT
+              </p>
+            </div>
+          </div>
+        )}
         <div className="landing-wrapper">
           <div className="landing-backdrop">
             <img
