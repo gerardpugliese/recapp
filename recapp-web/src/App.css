@@ -388,6 +388,12 @@ body {
   object-fit: cover;
 }
 
+@media screen and (max-width: 970px) {
+  .landing-backdrop {
+    display: none;
+  }
+}
+
 .l-content-wrapper {
   margin-top: 7vh;
   position: absolute;
@@ -397,10 +403,10 @@ body {
 .user-col-2 {
   margin-top: 2vh;
   width: 90vw;
-  height: 65vh;
+  height: 40vw;
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 4vw;
+  margin-right: 4vw;
 }
 
 .landing-left {
@@ -410,7 +416,7 @@ body {
 
 .recent-img-overlay-text {
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 2.5vh;
+  font-size: min(4vw, 24px);
   color: white;
   width: fit-content;
   border-bottom: 3px #84142d solid;
@@ -420,7 +426,7 @@ body {
 .landing-recent-movie-title {
   font-family: "Palanquin Dark", sans-serif;
   margin-top: 10px;
-  font-size: 3vh;
+  font-size: min(4vw, 24px);
   color: white;
   font-style: italic;
 }
@@ -450,7 +456,7 @@ body {
 
 .landing-text {
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 2.5vh;
+  font-size: min(4vw, 24px);
   margin-bottom: 0;
   border-bottom: 3px #84142d solid;
 }
@@ -937,7 +943,7 @@ body {
 .profile-row-1 {
   display: flex;
   width: 90vw;
-  margin-top: 7vh;
+  margin-top: 9vh;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -988,7 +994,7 @@ body {
 .profile-stats {
   width: 35vw;
   height: inherit;
-  padding-top: 3vh;
+  padding-top: 1vh;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1027,19 +1033,25 @@ body {
 
 .profile-nav-favorites {
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   cursor: pointer;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-favorites-active {
   background-color: #1f1f1e;
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   cursor: pointer;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-favorites:hover {
@@ -1050,18 +1062,24 @@ body {
 
 .profile-nav-interests {
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   margin-left: auto;
   cursor: pointer;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-interests-active {
   background-color: #1f1f1e;
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   cursor: pointer;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-interests:hover {
@@ -1070,19 +1088,25 @@ body {
 
 .profile-nav-watched {
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   cursor: pointer;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-watched-active {
   background-color: #1f1f1e;
   height: 100%;
-  width: 10vw;
+  width: fit-content;
   display: flex;
   cursor: pointer;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .profile-nav-watched:hover {
@@ -1095,7 +1119,7 @@ body {
   color: white;
   margin: auto;
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 2vw;
+  font-size: min(16px, 4vw);
 }
 
 .filter-wrapper {
@@ -1103,14 +1127,19 @@ body {
   margin-top: 4vh;
 }
 
+.filter-dropdown-wrapper {
+  width: 10vw;
+  background-color: #333333;
+}
+
 .filter-header {
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 1.5vw;
+  font-size: min(14px, 4vw);
   color: white;
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 1vw;
-  width: 6vw;
+  width: fit-content;
 }
 
 .filter-dropdown-wrapper:hover .media-filter-results {
@@ -1122,9 +1151,8 @@ body {
 
 .fmdh-wrapper {
   background-color: #333333;
-  width: 10vw;
   display: flex;
-  height: 5vh;
+  height: 4vh;
   margin: auto;
 }
 
@@ -1142,7 +1170,6 @@ body {
 
 .media-results-wrapper {
   display: flex;
-  width: 10vw;
   background-color: grey;
 }
 
@@ -1563,7 +1590,7 @@ body {
 
 .default-movie-row:hover {
   cursor: pointer;
-  border: 1px white solid;
+  border: 3px #84142d solid;
 }
 
 /* END OF ShowRow CLASSES */
@@ -1743,7 +1770,7 @@ body {
   border: none;
   background: none;
   color: white;
-  width: fit-content;
+  width: 15vw;
   padding-left: 5px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -1883,12 +1910,12 @@ body {
 }
 
 .explore-logo-icon {
-  font-size: calc(8px + 1.5vw);
+  font-size: min(4vw, 22px);
 }
 
 .explore-logo-text {
   display: block;
-  font-size: calc(8px + 1.5vw);
+  font-size: min(4vw, 22px);
   font-family: "Bungee", cursive;
   margin-bottom: 0;
   padding-left: 10px;
@@ -1923,6 +1950,44 @@ body {
 
 .non-user-nav-text {
   margin: 0;
+  font-size: min(4vw, 16px);
+}
+
+@media screen and (max-width: 581px) {
+  .nav-pic-wrapper {
+    min-height: 30px;
+    min-width: 30px;
+  }
+
+  .user-nav-wrapper {
+    margin-right: 2vw;
+  }
+
+  .non-user-nav-text {
+    font-size: 12px;
+  }
+
+  .explore-logo-icon {
+    font-size: 14px;
+  }
+
+  .explore-navbar-logo {
+    margin-left: 2vw;
+  }
+
+  .explore-logo-text {
+    font-size: 14px;
+  }
+
+  .navbar-inactive {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .navbar-active {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
 .search-bar-wrapper {
@@ -1932,7 +1997,7 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: calc(3px + 1vw);
+  font-size: min(4vw, 16px);
 }
 
 #search-results {
@@ -1961,8 +2026,8 @@ body {
 }
 
 .nav-pic-wrapper {
-  height: 4vw;
-  width: 4vw;
+  height: 3vw;
+  width: 3vw;
 }
 
 .nav-user-profile-pic {
@@ -1980,6 +2045,8 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
   font-size: calc(3px + 1vw);
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
 }
 
@@ -2021,10 +2088,6 @@ body {
   padding-top: 1vw;
   padding-bottom: 1vw;
   margin: auto;
-}
-
-.account-logout-btn:hover {
-  color: red;
 }
 
 /* END OF NavBar CLASSES */

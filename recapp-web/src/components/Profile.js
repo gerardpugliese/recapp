@@ -527,10 +527,8 @@ class Profile extends Component {
 
   hideAccountDropdown() {
     let length = document.querySelectorAll(":hover").length;
-    if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
-    ) {
+    let class_name = document.querySelectorAll(":hover")[length - 1].className;
+    if (class_name !== "account-logout-btn" || class_name !== undefined) {
       this.setState({ account_dropdown_visible: false });
     }
     console.log(document.querySelectorAll(":hover")[length - 1].className);
