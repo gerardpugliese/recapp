@@ -77,21 +77,23 @@ class App extends Component {
               </Nav>
             </Navbar>
           </div>
-          <div className="welcome-content">
-            <div className="logo-wrapper">
-              <i className="fas fa-video logo-icon align-vertically"></i>
-              <p className="logo-text">RECAPP</p>
+          <div className="welcome-content-wrapper">
+            <div className="welcome-content">
+              <div className="logo-wrapper">
+                <i className="fas fa-video logo-icon align-vertically"></i>
+                <p className="logo-text">RECAPP</p>
+              </div>
+              <p className="welcome-text">
+                Track movies and shows you've watched.
+              </p>
+              <p className="welcome-text">Create a watch list.</p>
+              <p className="welcome-text-last">
+                Display your all time favorites.
+              </p>
+              <Link to="/register" className="welcome-button">
+                GET STARTED
+              </Link>
             </div>
-            <p className="welcome-text">
-              Track movies and shows you've watched.
-            </p>
-            <p className="welcome-text">Create a watch list.</p>
-            <p className="welcome-text-last">
-              Display your all time favorites.
-            </p>
-            <Link to="/register" className="welcome-button">
-              GET STARTED
-            </Link>
           </div>
         </div>
         <div className="opaque-overlay"></div>

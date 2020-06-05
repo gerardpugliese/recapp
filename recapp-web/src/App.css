@@ -14,17 +14,19 @@ body {
   min-height: 100vh;
   color: white;
   margin: 0;
-  background-image: radial-gradient(circle, #232b2b, #000);
+  background-image: radial-gradient(circle, #5e5e5e, #000);
 }
 
 .welcome-content {
-  height: 50%;
+  height: fit-content;
   width: fit-content;
   margin: auto;
-  margin-top: 18vh;
-  margin-bottom: 25vh;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.welcome-content-wrapper {
+  width: 100%;
+  height: 80%;
+  display: flex;
 }
 
 .logo-wrapper {
@@ -607,6 +609,16 @@ body {
   min-height: 50vh;
   margin: auto;
 } /* Also used in Register */
+
+@media screen and (max-width: 581px) {
+  .movie-img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: -75%;
+    height: 70%;
+    width: auto;
+  }
+}
 
 .bkg-info-wrapper {
   position: absolute;
