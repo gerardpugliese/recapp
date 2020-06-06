@@ -11,12 +11,10 @@ class Icons extends Component {
   };
 
   updateState(state) {
-    console.log("in icon update state");
     this.setState({ item_state: state });
   }
 
   markInterested(id) {
-    console.log(this.state);
     if (this.state.item_state === 1) {
       const urlString = `http://127.0.0.1:8000/api/mark/${this.state.item_id}/remove_state/`;
       fetch(urlString, {
@@ -26,7 +24,6 @@ class Icons extends Component {
         },
       })
         .then((resp) => {
-          console.log("here");
           this.setState({
             item_state: 0,
           });
@@ -46,7 +43,6 @@ class Icons extends Component {
           body: JSON.stringify({ movie_id: this.state.item_id }),
         })
           .then((resp) => {
-            console.log("here");
             this.setState({
               item_state: 1,
             });
@@ -64,7 +60,6 @@ class Icons extends Component {
           body: JSON.stringify({ show_id: this.state.item_id }),
         })
           .then((resp) => {
-            console.log("in mark show interested");
             this.setState({
               item_state: 1,
             });
@@ -76,7 +71,6 @@ class Icons extends Component {
     }
   }
   handleWatched() {
-    console.log("in marked watched");
     if (this.state.item_state === 2) {
       const urlString = `http://127.0.0.1:8000/api/mark/${this.state.item_id}/remove_state/`;
       fetch(urlString, {
@@ -86,7 +80,6 @@ class Icons extends Component {
         },
       })
         .then((resp) => {
-          console.log("here");
           this.setState({
             item_state: 0,
           });
@@ -112,7 +105,6 @@ class Icons extends Component {
         },
       })
         .then((resp) => {
-          console.log("here");
           this.setState({
             item_state: 2,
             is_favorite: false,
@@ -133,7 +125,6 @@ class Icons extends Component {
           body: JSON.stringify({ movie_id: this.state.item_id }),
         })
           .then((resp) => {
-            console.log("in mark favorite");
             this.setState({
               item_state: 2,
               is_favorite: true,
@@ -152,7 +143,6 @@ class Icons extends Component {
           body: JSON.stringify({ show_id: this.state.item_id }),
         })
           .then((resp) => {
-            console.log("in mark favorite");
             this.setState({
               item_state: 2,
               is_favorite: true,

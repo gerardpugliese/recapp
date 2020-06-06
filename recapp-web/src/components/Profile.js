@@ -28,8 +28,6 @@ class Profile extends Component {
   }
   state = {
     token: this.props.cookies.get("recapp-token"),
-    interested: [],
-    watched: [],
     user_profile: {
       username: "",
       image: "",
@@ -58,8 +56,6 @@ class Profile extends Component {
   };
 
   setTopTen(name, img, number, id, media_type) {
-    console.log("media_type");
-    console.log(media_type);
     const urlString = "http://127.0.0.1:8000/api/topten/set_top_ten/";
     fetch(urlString, {
       method: "POST",
@@ -77,7 +73,6 @@ class Profile extends Component {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         this.setState({});
       })
       .catch((err) => console.log(err));
@@ -96,7 +91,6 @@ class Profile extends Component {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res.TopTens);
         let toptens = res.TopTens;
         toptens.forEach((movie, index) => {
           if (movie.media_type === "Movie") {
@@ -119,35 +113,25 @@ class Profile extends Component {
   }
 
   getTopFavorites(favorite_movie_id, favorite_show_id) {
-    console.log(favorite_movie_id);
-    console.log(favorite_show_id);
-    let favorite_movie_title = "";
-    let favorite_show_title = "";
     const movieInfoURL = `https://api.themoviedb.org/3/movie/${favorite_movie_id}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US&include_image_language=en,null`;
-    console.log(movieInfoURL);
     fetch(movieInfoURL, {
       method: "GET",
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         favorite_movie_backdrop =
           "https://image.tmdb.org/t/p/original" + res.backdrop_path;
-        favorite_movie_title = res.title;
       })
       .catch((err) => console.log(err));
 
     const showInfoURL = `https://api.themoviedb.org/3/tv/${favorite_show_id}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US&include_image_language=en,null`;
-    console.log(showInfoURL);
     fetch(showInfoURL, {
       method: "GET",
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         favorite_show_backdrop =
           "https://image.tmdb.org/t/p/original" + res.backdrop_path;
-        favorite_show_title = res.name;
       })
       .catch((err) => console.log(err));
   }
@@ -348,7 +332,6 @@ class Profile extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.user_profile;
-        console.log(results);
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
@@ -379,26 +362,21 @@ class Profile extends Component {
 
   applyFilter(filter = "") {
     let filter_type = "";
-    let list_to_filter = [];
 
     if (filter !== "") {
       list_of_filters_new.push(filter);
     }
 
-    console.log(list_of_filters_new);
-
     list_to_filter_new = this.decide_unfiltered_list();
 
     //Step into appropriate case based off of filter type, and then apply filter
-    console.log(list_to_filter);
-
-    list_of_filters_new.map((filter) => {
+    list_of_filters_new.forEach((filter) => {
       let new_list = [];
       filter_type = this.decideFilterType(filter);
       switch (filter_type) {
         case "genre":
           //Loop through each item in things we want to filter
-          list_to_filter_new.map((obj) => {
+          list_to_filter_new.forEach((obj) => {
             const genres = obj.props[Object.keys(obj.props)[0]].genres;
             //Loop through filter names
             var i = 0;
@@ -413,7 +391,7 @@ class Profile extends Component {
           });
           break;
         case "media":
-          list_to_filter_new.map((obj) => {
+          list_to_filter_new.forEach((obj) => {
             if (filter === "TV-Show") {
               if (obj.props[Object.keys(obj.props)[0]].seasons !== undefined) {
                 new_list.push(obj);
@@ -425,10 +403,10 @@ class Profile extends Component {
             }
           });
           break;
+        default:
+        //Do nothing
       }
       list_to_filter_new = new_list;
-      console.log(list_to_filter_new);
-      console.log(list_of_filters_new);
       this.setState({
         view_filtered: true,
       });
@@ -437,7 +415,6 @@ class Profile extends Component {
 
   decideFilterType(filter) {
     const mediaFilters = ["TV-Show", "Movie"];
-    console.log(mediaFilters.includes(filter));
     return mediaFilters.includes(filter) ? "media" : "genre";
   }
 
@@ -453,11 +430,9 @@ class Profile extends Component {
 
   reset_filter(filter) {
     list_of_filters_new = list_of_filters_new.filter((e) => e !== filter);
-    console.log(list_of_filters_new);
     if (list_of_filters_new.length === 0) {
       this.setState({ view_filtered: false });
     } else {
-      console.log("in else of reset filter");
       this.applyFilter();
     }
   }
@@ -494,13 +469,11 @@ class Profile extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     if (searchTerm === "") {
@@ -521,21 +494,28 @@ class Profile extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
-    let class_name = document.querySelectorAll(":hover")[length - 1].className;
-    if (class_name !== "account-logout-btn" || class_name !== undefined) {
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
+    if (
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
+    ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   updateTopTen(top_ten, type) {
-    if (type == "Movies") {
+    if (type === "Movies") {
       this.setState({ top_ten_movies: top_ten });
       const urlString =
         "http://127.0.0.1:8000/api/userprofile/set_top_ten_movies/";
@@ -550,9 +530,7 @@ class Profile extends Component {
         }),
       })
         .then((resp) => resp.json())
-        .then((res) => {
-          console.log(res);
-        })
+        .then((res) => {})
         .catch((err) => console.log(err));
     } else {
       //this.setState({ top_ten_shows: top_ten })
@@ -604,7 +582,6 @@ class Profile extends Component {
                   className="search-bar"
                   placeholder="Search..."
                   onClick={() => {
-                    console.log(document.getElementById("search-results"));
                     document.getElementById("search-results").style.display =
                       "block";
                   }}
@@ -621,6 +598,7 @@ class Profile extends Component {
               >
                 <div className="nav-pic-wrapper">
                   <img
+                    alt="user-profile"
                     className="nav-user-profile-pic"
                     src={this.state.user_profile.image}
                   />
@@ -654,7 +632,10 @@ class Profile extends Component {
             </Animated>
           </div>
           <div className="profile-bkg-img">
-            <img src={this.state.user_profile.def_profile_img} />
+            <img
+              alt="profile-background"
+              src={this.state.user_profile.def_profile_img}
+            />
           </div>
           <div className="profile-bkg-overlay"></div>
           <div className="profile-content-wrapper">
@@ -662,6 +643,7 @@ class Profile extends Component {
               <div className="profile-image-wrapper">
                 <div className="image-name-wrapper">
                   <img
+                    alt="user-profile"
                     className="profile-image"
                     src={this.state.user_profile.image}
                   />
@@ -693,9 +675,9 @@ class Profile extends Component {
               <div className="profile-stats">
                 <div>
                   <p className="stats-header">Your Favorite Movie</p>
-                  {console.log(favorite_movie_backdrop)}
                   {favorite_movie_backdrop !== "undefined" && (
                     <img
+                      alt="favorite-movie"
                       className="stats-img"
                       src={favorite_movie_backdrop}
                     ></img>
@@ -704,9 +686,12 @@ class Profile extends Component {
               </div>
               <div className="profile-stats">
                 <p className="stats-header">Your Favorite Show</p>
-                {console.log(favorite_show_backdrop)}
                 {favorite_show_backdrop !== "undefined" && (
-                  <img className="stats-img" src={favorite_show_backdrop}></img>
+                  <img
+                    alt="favorite-show"
+                    className="stats-img"
+                    src={favorite_show_backdrop}
+                  ></img>
                 )}
               </div>
             </div>

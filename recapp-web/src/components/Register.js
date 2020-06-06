@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Animated } from "react-animated-css";
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +23,6 @@ class Register extends Component {
   };
 
   displayError = (error) => {
-    console.log("Display error: " + error);
     this.setState({
       error_raised: true,
       error_text: error,
@@ -48,19 +47,15 @@ class Register extends Component {
     )
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         let random_index = Math.floor(Math.random() * res.movie_bkgs.length);
-        console.log(random_index);
         const movie_id = res.movie_bkgs[random_index].movie_id;
         const bkg_name = res.movie_bkgs[random_index].movie_name;
-        console.log(movie_id);
         const movieInfoURL = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
         fetch(movieInfoURL, {
           method: "GET",
         })
           .then((result) => result.json())
           .then((resp) => {
-            console.log(resp);
             let bkg_img =
               "https://image.tmdb.org/t/p/original" + resp.backdrop_path;
             this.setState({ bkg_img_src: bkg_img, bkg_img_name: bkg_name });
@@ -87,12 +82,10 @@ class Register extends Component {
       })
         .then((resp) => resp.json())
         .then((res) => {
-          console.log(res.token);
           window.location.href = "/login";
         })
         .catch((err) => console.log(err));
     } else {
-      console.log("Error");
       this.displayError("Error: Passwords do not match.");
     }
   };

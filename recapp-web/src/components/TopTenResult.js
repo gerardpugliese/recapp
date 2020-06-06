@@ -23,7 +23,11 @@ class TopTenResult extends Component {
             </React.Fragment>
           ) : (
             <div className="top-ten-nondefault">
-              <img className="top-ten-img" src={this.props.img}></img>
+              <img
+                alt="top-ten"
+                className="top-ten-img"
+                src={this.props.img}
+              ></img>
             </div>
           )}
         </div>

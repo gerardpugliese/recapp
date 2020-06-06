@@ -1921,6 +1921,11 @@ body {
   text-decoration: none;
 }
 
+.explore-navbar-logo:active {
+  color: white;
+  text-decoration: none;
+}
+
 .explore-logo-icon {
   font-size: min(4vw, 22px);
 }

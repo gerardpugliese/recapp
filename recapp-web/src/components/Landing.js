@@ -50,7 +50,6 @@ class Landing extends Component {
         const results = res.results;
 
         results.forEach((movie) => {
-          console.log(movie);
           movie.poster_src =
             "https://image.tmdb.org/t/p/original" + movie.poster_path;
           //if (this.imageExists(movie.poster_src)) {
@@ -65,7 +64,6 @@ class Landing extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
 
@@ -110,14 +108,12 @@ class Landing extends Component {
 
         results.forEach((movie) => {
           const movieInfoURL = `https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
-          //console.log(movieInfoURL);
           fetch(movieInfoURL, {
             method: "GET",
           })
             .then((resp) => resp.json())
             .then((res) => {
               const results = res;
-              //console.log(results);
 
               results.poster_src =
                 "https://image.tmdb.org/t/p/original" + results.poster_path;
@@ -208,7 +204,6 @@ class Landing extends Component {
           },
           most_recent_movie: results.most_recent_movie,
         });
-        console.log(this.state);
         this.getRecentWatch();
       })
       .catch((err) => console.log(err));
@@ -222,7 +217,6 @@ class Landing extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res;
-        console.log(results);
         this.setState({
           most_recent_movie: results,
         });
@@ -240,7 +234,6 @@ class Landing extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.results;
-        console.log(results);
         var movie_result = results[0];
         movie_result.poster_src =
           "https://image.tmdb.org/t/p/original" + movie_result.poster_path;
@@ -277,19 +270,24 @@ class Landing extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
     if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
     ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   performSearch(searchTerm) {
@@ -324,13 +322,11 @@ class Landing extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     boundObject.performSearch(searchTerm);
@@ -350,18 +346,12 @@ class Landing extends Component {
               <p className="explore-logo-text">RECAPP</p>
             </Link>
             <Link to="/landing" className="navbar-active non-user-nav-wrapper">
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-left": "10px" }}
-              >
+              <p className="non-user-nav-text" style={{ marginLeft: "10px" }}>
                 FILMS
               </p>
             </Link>
             <Link to="/shows" className="navbar-inactive non-user-nav-wrapper">
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-right": "10px" }}
-              >
+              <p className="non-user-nav-text" style={{ marginRight: "10px" }}>
                 TV SHOWS
               </p>
             </Link>
@@ -387,6 +377,7 @@ class Landing extends Component {
             >
               <div className="nav-pic-wrapper">
                 <img
+                  alt="user-profile"
                   className="nav-user-profile-pic"
                   src={this.state.user_profile.image}
                 />
@@ -409,6 +400,7 @@ class Landing extends Component {
         <div className="landing-wrapper">
           <div className="landing-backdrop">
             <img
+              alt="latest-movie"
               src={
                 "https://image.tmdb.org/t/p/original" +
                 this.state.most_recent_movie.backdrop_path

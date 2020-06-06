@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
-import { Animated } from "react-animated-css";
 
 class App extends Component {
   constructor(props) {

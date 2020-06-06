@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class TopTenRow extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="top-ten-row-wrapper">
         <div
@@ -26,7 +25,11 @@ class TopTenRow extends Component {
             </React.Fragment>
           ) : (
             <div className="top-ten-nondefault">
-              <img className="top-ten-img" src={this.props.img}></img>
+              <img
+                alt="top-ten"
+                className="top-ten-img"
+                src={this.props.img}
+              ></img>
               {this.props.number !== undefined && (
                 <p className="top-ten-text">
                   {this.props.number} {". "} {this.props.name}

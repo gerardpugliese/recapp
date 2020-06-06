@@ -59,17 +59,13 @@ class MovieView extends Component {
   };
 
   showRating() {
-    console.log("in show rating");
     this.setState({ show_rating: true });
   }
 
   hideRating(reason, value, review) {
-    console.log("in hide rating");
-    console.log(review);
     if (reason === "close_btn") {
       this.setState({ show_rating: false });
     } else if (reason === "submit_btn") {
-      console.log("here in close submit");
       this.iconElement.current.updateState(2);
       this.setState({
         show_rating: false,
@@ -77,7 +73,6 @@ class MovieView extends Component {
         rating_updated: true,
         user_movie_review: review,
       });
-      console.log(this.state.user_movie_review);
     }
   }
 
@@ -93,7 +88,6 @@ class MovieView extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         results = res.rating_images;
-        console.log(results);
         this.setState({
           imdb_img: "http://127.0.0.1:8000" + results.imdb_image,
           rottentomatoes_img:
@@ -185,27 +179,20 @@ class MovieView extends Component {
   }
 
   getIMDBInfo(imdbID) {
-    console.log(imdbID);
     var imdb_rating = "";
     var rottentomatoes_rating = "";
     var director = "";
     const imdbInfoURL = `http://www.omdbapi.com/?i=${imdbID}&apikey=f8dd8e76`;
-    console.log(imdbInfoURL);
     fetch(imdbInfoURL, {
       method: "GET",
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res.Director);
         director = res.Director;
-        console.log(res.Ratings);
         res.Ratings.forEach((rating) => {
-          console.log(rating);
-          if (rating.Source == "Rotten Tomatoes") {
-            console.log("in rotten tomates value");
+          if (rating.Source === "Rotten Tomatoes") {
             rottentomatoes_rating = rating.Value;
-          } else if (rating.Source == "Internet Movie Database") {
-            console.log("in imdb rating");
+          } else if (rating.Source === "Internet Movie Database") {
             imdb_rating = rating.Value;
             imdb_rating = imdb_rating.split("/")[0];
           }
@@ -341,13 +328,11 @@ class MovieView extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     if (searchTerm === "") {
@@ -375,19 +360,24 @@ class MovieView extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
     if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
     ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   render() {
@@ -438,6 +428,7 @@ class MovieView extends Component {
             >
               <div className="nav-pic-wrapper">
                 <img
+                  alt="user-profile"
                   className="nav-user-profile-pic"
                   src={this.state.user_profile.image}
                 />
@@ -464,7 +455,7 @@ class MovieView extends Component {
               "https://image.tmdb.org/t/p/originalnull" ? (
                 <div className="default-view-backdrop"></div>
               ) : (
-                <img src={this.state.movie_backdrop} />
+                <img alt="movie-backdrop" src={this.state.movie_backdrop} />
               )}
             </div>
             <div className="movie-view-overlay"></div>
@@ -499,6 +490,7 @@ class MovieView extends Component {
                       </div>
                     ) : (
                       <img
+                        alt="movie-img"
                         className="movie-view-img"
                         src={this.state.movie_img}
                       />

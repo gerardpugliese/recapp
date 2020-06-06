@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Animated } from "react-animated-css";
 import { withCookies } from "react-cookie";
 
 class Login extends Component {
@@ -23,7 +22,6 @@ class Login extends Component {
   };
 
   displayError = (error) => {
-    console.log("Display error: " + error);
     this.setState({
       error_raised: true,
       error_text: error,
@@ -38,16 +36,6 @@ class Login extends Component {
     }, 5000);
   };
 
-  handleMouseHoverEnter() {
-    console.log("hover enter");
-    this.setState({ isHovering: true });
-  }
-
-  handleMouseHoverExit() {
-    this.setState({ isHovering: false });
-    console.log("hover exit");
-  }
-
   loadMovieImages() {
     //const movieInfoURL = `https://api.themoviedb.org/3/movie/${}?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
     fetch(
@@ -58,7 +46,6 @@ class Login extends Component {
     )
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         let random_index = Math.floor(Math.random() * res.movie_bkgs.length);
         console.log(random_index);
         const movie_id = res.movie_bkgs[random_index].movie_id;

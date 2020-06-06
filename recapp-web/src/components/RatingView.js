@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Rating from "./Rating";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
@@ -19,7 +18,6 @@ class RatingView extends Component {
   };
 
   markWatched() {
-    console.log("in marked watched");
     const urlString = "http://127.0.0.1:8000/api/mark/mark_watched/";
     if (this.state.media_type === "movie") {
       fetch(urlString, {
@@ -35,7 +33,6 @@ class RatingView extends Component {
         }),
       })
         .then((resp) => {
-          console.log(this.state);
           this.setState({
             item_state: 2,
           });
@@ -62,7 +59,6 @@ class RatingView extends Component {
         }),
       })
         .then((resp) => {
-          console.log("here2");
           this.setState({
             item_state: 2,
           });
@@ -79,13 +75,10 @@ class RatingView extends Component {
   }
 
   reflectSliderChanges(value) {
-    console.log(value);
-    let adjusted_value = value / 10;
     this.setState({ slider_value: value });
   }
 
   reflectReviewChanges(event) {
-    console.log(event.target.value);
     this.setState({ review_text: event.target.value });
   }
 
@@ -94,7 +87,11 @@ class RatingView extends Component {
       <div className="rating-view-background">
         <div className="rating-view">
           <div className="rating-view-left-col">
-            <img className="rating-view-poster" src={this.state.poster}></img>
+            <img
+              alt="movie"
+              className="rating-view-poster"
+              src={this.state.poster}
+            ></img>
           </div>
           <div className="rating-view-right-col">
             <div className="rating-view-row-1">
@@ -128,7 +125,6 @@ class RatingView extends Component {
             </div>
 
             <div className="rating-view-row-5">
-              {console.log(this.state)}
               <textarea
                 className="rating-view-textarea"
                 value={this.state.review_text}

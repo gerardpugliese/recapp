@@ -10,10 +10,6 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 class ActorView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     token: this.props.cookies.get("recapp-token"),
     actor_id: this.props.cookies.get("actor-id"),
@@ -66,7 +62,6 @@ class ActorView extends Component {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         this.setState({
           actor_name: res.name,
           actor_birthday: res.birthday,
@@ -80,22 +75,18 @@ class ActorView extends Component {
   }
 
   getActorCredits() {
-    console.log(this.state.token);
     let credits_cap = 30;
     let i = 0;
     let credits = [];
     const actorInfoURL = `https://api.themoviedb.org/3/person/${this.state.actor_id}/combined_credits?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
-    console.log(actorInfoURL);
     fetch(actorInfoURL, {
       method: "GET",
     })
       .then((resp) => resp.json())
       .then((res) => {
-        console.log(res);
         const sortedResults = res.cast.sort(
           this.compareValues("popularity", "desc")
         );
-        console.log(sortedResults);
         if (sortedResults.length < credits_cap) {
           credits_cap = sortedResults.length;
         }
@@ -165,13 +156,11 @@ class ActorView extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     if (searchTerm === "") {
@@ -221,19 +210,24 @@ class ActorView extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
     if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
     ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   render() {
@@ -290,6 +284,7 @@ class ActorView extends Component {
             >
               <div className="nav-pic-wrapper">
                 <img
+                  alt="user-profile"
                   className="nav-user-profile-pic"
                   src={this.state.user_profile.image}
                 />
@@ -324,7 +319,11 @@ class ActorView extends Component {
         <div className="credits-results">
           <div className="credits-header">
             <div className="credits-header-img-wrapper">
-              <img className="credits-header-img" src={this.state.actor_img} />
+              <img
+                alt="credit"
+                className="credits-header-img"
+                src={this.state.actor_img}
+              />
             </div>
             <div className="credits-info-wrapper">
               <p className="credits-info-name">{this.state.actor_name}</p>

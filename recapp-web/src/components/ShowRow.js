@@ -7,7 +7,6 @@ class ShowRow extends Component {
   };
 
   openShowView() {
-    console.log("Open show view for " + this.props.show.id);
     this.props.cookies.set("show-id", this.props.show.id);
     window.location.href = "/show";
   }

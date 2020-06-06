@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Animated } from "react-animated-css";
 import MovieRow from "./MovieRow";
+
 class Explore extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +42,6 @@ class Explore extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
 

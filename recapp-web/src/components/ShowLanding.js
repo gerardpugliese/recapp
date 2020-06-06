@@ -46,9 +46,7 @@ class ShowLanding extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.results;
-        console.log(results);
         results.forEach((show) => {
-          console.log(show);
           show.poster_src =
             "https://image.tmdb.org/t/p/original" + show.poster_path;
           //if (this.imageExists(movie.poster_src)) {
@@ -61,7 +59,6 @@ class ShowLanding extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
 
@@ -74,9 +71,7 @@ class ShowLanding extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.results;
-        console.log(results);
         results.forEach((show) => {
-          console.log(show);
           show.poster_src =
             "https://image.tmdb.org/t/p/original" + show.poster_path;
           //if (this.imageExists(movie.poster_src)) {
@@ -103,7 +98,6 @@ class ShowLanding extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.user_profile;
-        console.log(results);
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
@@ -116,7 +110,6 @@ class ShowLanding extends Component {
           most_recent_show: results.most_recent_show,
         });
         this.getRecentWatch();
-        console.log(this.state);
       })
       .catch((err) => console.log(err));
   }
@@ -129,7 +122,6 @@ class ShowLanding extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res;
-        console.log(results);
         this.setState({
           most_recent_show: results,
         });
@@ -177,13 +169,11 @@ class ShowLanding extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     boundObject.performSearch(searchTerm);
@@ -196,19 +186,24 @@ class ShowLanding extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
     if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
     ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   render() {
@@ -228,18 +223,12 @@ class ShowLanding extends Component {
               to="/landing"
               className="navbar-inactive non-user-nav-wrapper"
             >
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-left": "10px" }}
-              >
+              <p className="non-user-nav-text" style={{ marginLeft: "10px" }}>
                 FILMS
               </p>
             </Link>
             <Link to="/shows" className="navbar-active non-user-nav-wrapper">
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-right": "10px" }}
-              >
+              <p className="non-user-nav-text" style={{ marginRight: "10px" }}>
                 TV SHOWS
               </p>
             </Link>
@@ -265,6 +254,7 @@ class ShowLanding extends Component {
             >
               <div className="nav-pic-wrapper">
                 <img
+                  alt="user-profile"
                   className="nav-user-profile-pic"
                   src={this.state.user_profile.image}
                 />
@@ -287,6 +277,7 @@ class ShowLanding extends Component {
         <div className="landing-wrapper">
           <div className="landing-backdrop">
             <img
+              alt="latest-show"
               src={
                 "https://image.tmdb.org/t/p/original" +
                 this.state.most_recent_show.backdrop_path

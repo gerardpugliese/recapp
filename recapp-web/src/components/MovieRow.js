@@ -7,7 +7,6 @@ class MovieRow extends Component {
   };
 
   openMovieView() {
-    console.log("Open movie view for " + this.props.movie.id);
     this.props.cookies.set("movie-id", this.props.movie.id);
     window.location.href = "/movie";
   }
@@ -31,7 +30,6 @@ class MovieRow extends Component {
                 <p className="default-movie-row-name">
                   {this.props.movie.title}
                 </p>
-                {console.log(this.props.movie.release_date)}
                 {this.props.movie.release_date !== undefined && (
                   <p className="default-movie-row-year">
                     ({this.sanitizeReleaseDate(this.props.movie.release_date)})

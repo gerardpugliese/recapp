@@ -47,25 +47,22 @@ class ShowView extends Component {
     user_show_rating: "",
     user_show_review: "",
     search_results: [],
-    show_rating: false,
+    display_rating: false,
     rating_updated: false,
     account_dropdown_visible: false,
   };
 
   showRating() {
-    console.log("in show rating");
-    this.setState({ show_rating: true });
+    this.setState({ display_rating: true });
   }
 
   hideRating(reason, value, review) {
-    console.log("in hide rating");
     if (reason === "close_btn") {
-      this.setState({ show_rating: false });
+      this.setState({ display_rating: false });
     } else if (reason === "submit_btn") {
-      console.log("here in close submit");
       this.iconElement.current.updateState(2);
       this.setState({
-        show_rating: false,
+        display_rating: false,
         user_show_rating: value,
         user_show_review: review,
         rating_updated: true,
@@ -113,7 +110,6 @@ class ShowView extends Component {
           is_favorite: res.movie_state.is_favorite,
           user_show_rating: res.movie_state.rating,
         });
-        console.log(this.state);
         if (this.state.show_state === 2) {
           this.setState({ rating_updated: true });
         }
@@ -123,7 +119,6 @@ class ShowView extends Component {
 
   getShowInfo() {
     const showInfoURL = `https://api.themoviedb.org/3/tv/${this.state.show_id}?api_key=c69a9bc66efca73bdac1c765494a3655`;
-    //console.log(movieInfoURL);
     fetch(showInfoURL, {
       method: "GET",
     })
@@ -177,7 +172,6 @@ class ShowView extends Component {
   getShowCredits() {
     var show_actors = [];
     const showInfoURL = `https://api.themoviedb.org/3/tv/${this.state.show_id}/credits?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US`;
-    //console.log(movieInfoURL);
     fetch(showInfoURL, {
       method: "GET",
     })
@@ -185,7 +179,6 @@ class ShowView extends Component {
       .then((res) => {
         const results = res;
         var cast = results.cast;
-        var crew = results.crew;
         var cast_cap = 0;
         if (cast.length <= 10) {
           cast_cap = cast.length;
@@ -225,7 +218,6 @@ class ShowView extends Component {
   sanitizeRuntime(runtime) {
     let minutes = runtime % 60;
     let hours = parseInt(runtime / 60);
-    console.log(hours);
     return hours + "h " + minutes + "m";
   }
   chooseRatingColor(rating) {
@@ -272,13 +264,11 @@ class ShowView extends Component {
         });
       })
       .catch((err) => {
-        console.log("upcoming error");
         console.log(err);
       });
   }
 
   searchChangeHandler(event) {
-    console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
     if (searchTerm === "") {
@@ -297,23 +287,27 @@ class ShowView extends Component {
   }
 
   showAccountDropdown() {
-    console.log("in show account dropdown");
     this.setState({ account_dropdown_visible: true });
   }
 
   hideAccountDropdown() {
-    let length = document.querySelectorAll(":hover").length;
+    let items_hovering = document.querySelectorAll(":hover");
+    let length = items_hovering.length;
     if (
-      document.querySelectorAll(":hover")[length - 1].className !==
-      "account-logout-btn"
+      document.querySelectorAll(":hover")[length - 1] === undefined ||
+      document.querySelectorAll(":hover")[length - 1].tagName === "iframe"
     ) {
       this.setState({ account_dropdown_visible: false });
+    } else {
+      let class_name = document.querySelectorAll(":hover")[length - 1]
+        .className;
+      if (class_name !== "account-logout-btn" || class_name === "undefined") {
+        this.setState({ account_dropdown_visible: false });
+      }
     }
-    console.log(document.querySelectorAll(":hover")[length - 1].className);
   }
 
   componentDidMount() {
-    console.log(this.state);
     this.getProfileInformation();
     this.getShowInfo();
     this.getSimilarShow();
@@ -321,13 +315,6 @@ class ShowView extends Component {
   }
 
   render() {
-    var rating_style = {
-      width: (this.state.user_movie_rating * 10).toString(10) + "%",
-      backgroundColor: this.chooseRatingColor(this.state.user_movie_rating),
-      zIndex: 4,
-      height: "100%",
-    };
-
     return (
       <div className="wrapper">
         <Navbar
@@ -382,6 +369,7 @@ class ShowView extends Component {
             >
               <div className="nav-pic-wrapper">
                 <img
+                  alt="user-profile"
                   className="nav-user-profile-pic"
                   src={this.state.user_profile.image}
                 />
@@ -408,7 +396,7 @@ class ShowView extends Component {
               "https://image.tmdb.org/t/p/originalnull" ? (
                 <div className="default-view-backdrop"></div>
               ) : (
-                <img src={this.state.show_backdrop} />
+                <img alt="show-backdrop" src={this.state.show_backdrop} />
               )}
             </div>
             <div className="movie-view-overlay"></div>
@@ -444,6 +432,7 @@ class ShowView extends Component {
                       </div>
                     ) : (
                       <img
+                        alt="show-view"
                         className="movie-view-img"
                         src={this.state.show_img}
                       />
@@ -505,8 +494,7 @@ class ShowView extends Component {
                 )}
               </div>
             </div>
-            {console.log(this.state.show_state)}
-            {this.state.show_rating === true && (
+            {this.state.display_rating === true && (
               <RatingView
                 movie_name={this.state.show_name}
                 movie_year=""

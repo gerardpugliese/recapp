@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import TopTenRow from "./TopTenRow";
 import TopTenResult from "./TopTenResult";
 
 let top_ten = [];
-let counter = 0;
 class TopTen extends Component {
   constructor(props) {
     super(props);
@@ -28,14 +26,6 @@ class TopTen extends Component {
   };
 
   setTopTen(name, img, number, id) {
-    /*let current_top_ten = this.state.results;
-    const item_to_insert = <TopTenRow name={name} img={img} number={number} />;
-    current_top_ten[number - 1] = item_to_insert;
-    //Add id to top ten array
-    top_ten_movies_arr[number - 1] = id;
-    this.props.set_function(top_ten_movies_arr.join(","), "Movies");*/
-    //this.props.set_function(id, number, "Movies");
-
     let media_type = this.displayInfo();
 
     top_ten[number - 1] = {
@@ -71,14 +61,12 @@ class TopTen extends Component {
         results.forEach((result) => {
           let img_link =
             "https://image.tmdb.org/t/p/original" + result.poster_path;
-          console.log(result.title);
           let name = "";
           if (result.title === undefined) {
             name = result.name;
           } else {
             name = result.title;
           }
-          console.log(name);
           const resultItem = (
             <TopTenResult
               name={name}
@@ -183,6 +171,7 @@ class TopTen extends Component {
                   <div className="default-edit-topten-img"> </div>
                 ) : (
                   <img
+                    alt="edit-item"
                     className="edit-window-img"
                     src={this.state.edit_item.img}
                   />
@@ -228,42 +217,42 @@ class TopTen extends Component {
             </div>
           ) : (
             <div className="top-ten-results-wrapper">
-              {console.log(this.props.top_ten)}
-
               {top_ten.map((movie, index) => {
-                {
-                  return movie === "" ? (
-                    <div
-                      className="top-ten-default-wrapper"
-                      onClick={() => {
-                        this.showEditWindow("", "", index + 1);
-                      }}
-                    >
-                      <div className="top-ten-default">
-                        <p className="top-ten-default-text">Click to edit.</p>
-                      </div>
-                      <p className="top-ten-text">
-                        {index + 1} {"."}
-                      </p>
+                return movie === "" ? (
+                  <div
+                    className="top-ten-default-wrapper"
+                    onClick={() => {
+                      this.showEditWindow("", "", index + 1);
+                    }}
+                  >
+                    <div className="top-ten-default">
+                      <p className="top-ten-default-text">Click to edit.</p>
                     </div>
-                  ) : (
-                    <div
-                      className="top-ten-nondefault"
-                      onClick={() => {
-                        this.showEditWindow(
-                          movie.title,
-                          movie.img_link,
-                          movie.number
-                        );
-                      }}
-                    >
-                      <img className="top-ten-img" src={movie.img_link}></img>
-                      <p className="top-ten-text">
-                        {movie.number} {". "} {movie.title}
-                      </p>
-                    </div>
-                  );
-                }
+                    <p className="top-ten-text">
+                      {index + 1} {"."}
+                    </p>
+                  </div>
+                ) : (
+                  <div
+                    className="top-ten-nondefault"
+                    onClick={() => {
+                      this.showEditWindow(
+                        movie.title,
+                        movie.img_link,
+                        movie.number
+                      );
+                    }}
+                  >
+                    <img
+                      alt="top-ten"
+                      className="top-ten-img"
+                      src={movie.img_link}
+                    ></img>
+                    <p className="top-ten-text">
+                      {movie.number} {". "} {movie.title}
+                    </p>
+                  </div>
+                );
               })}
             </div>
           )}

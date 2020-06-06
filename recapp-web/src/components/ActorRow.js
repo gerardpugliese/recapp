@@ -19,6 +19,7 @@ class ActorRow extends Component {
             <div className="default-img-bkg">
               <img
                 className="actor-default-img"
+                alt="default-actor"
                 src={this.props.def_image}
                 onClick={() => this.openActorView()}
               />
@@ -26,6 +27,7 @@ class ActorRow extends Component {
           ) : (
             <img
               className="actor-image"
+              alt="actor"
               src={this.props.image}
               onClick={() => this.openActorView()}
             />
