@@ -275,16 +275,11 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         #Get lists of all movies and shows the user has watched
         watched_movies = Mark.objects.filter(user=user, state=2, media_type="movie")
         watched_shows = Mark.objects.filter(user=user, state=2, media_type="tv")
-        #Filter the watched lists by rating and return the highest rated of each
-        highest_rated_show = watched_shows.order_by('-rating').first()
-        highest_rated_movie = watched_movies.order_by('-rating').first()
-        #Set and save these changes to the UserProfile
-        profile.highest_rated_movie = highest_rated_movie.item_id
-        profile.highest_rated_show = highest_rated_show.item_id
         profile.save()
         serializer = UserProfileSerializer(profile, many=False)
         response = {'user_profile': serializer.data}
         return Response(response, status=status.HTTP_200_OK)
+
 
     @action(detail=False, methods=['POST'])
     def set_top_ten_movies(self, request, pk=None):

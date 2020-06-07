@@ -14,8 +14,6 @@ class UserProfile(models.Model):
     #user stats
     movies_watched = models.IntegerField(default=0)
     shows_watched = models.IntegerField(default=0)
-    highest_rated_movie = models.CharField(max_length=30, default='')
-    highest_rated_show = models.CharField(max_length=30, default='')
     most_recent_movie = models.CharField(max_length=30, default='')
     most_recent_show = models.CharField(max_length=30, default='')
     top_ten_movies = models.CharField(max_length=200, default='')
