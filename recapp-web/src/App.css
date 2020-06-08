@@ -1043,6 +1043,11 @@ body {
   border-radius: 5px;
 }
 
+.default-profile-list-text {
+  font-size: min(16px, 4vw);
+  font-family: "Palanquin Dark", sans-serif;
+}
+
 .profile-nav-favorites {
   height: 100%;
   width: fit-content;
@@ -2034,6 +2039,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 7vh;
+  width: 6vw;
   padding-left: 1vw;
   padding-right: 1vw;
 }

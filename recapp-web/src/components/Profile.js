@@ -973,23 +973,43 @@ class Profile extends Component {
               <div className="profile-lists-results">
                 {this.state.view_favorites && (
                   <div className="profile-favorites">
-                    {this.state.view_filtered
-                      ? list_to_filter_new
-                      : this.state.favorites}
+                    {this.state.view_filtered ? (
+                      list_to_filter_new
+                    ) : this.state.favorites.length === 0 ? (
+                      <p className="default-profile-list-text">
+                        Favorite some movies or shows and they will appear here!
+                      </p>
+                    ) : (
+                      this.state.favorites
+                    )}
                   </div>
                 )}
                 {this.state.view_interested && (
                   <div className="profile-interests">
-                    {this.state.view_filtered
-                      ? list_to_filter_new
-                      : this.state.interested}
+                    {this.state.view_filtered ? (
+                      list_to_filter_new
+                    ) : this.state.interested.length === 0 ? (
+                      <p className="default-profile-list-text">
+                        Add some movies or shows to your interested list and
+                        they will appear here!
+                      </p>
+                    ) : (
+                      this.state.interested
+                    )}
                   </div>
                 )}
                 {this.state.view_watched && (
                   <div className="profile-watched">
-                    {this.state.view_filtered
-                      ? list_to_filter_new
-                      : this.state.watched}
+                    {this.state.view_filtered ? (
+                      list_to_filter_new
+                    ) : this.state.watched.length === 0 ? (
+                      <p className="default-profile-list-text">
+                        Add some movies or shows to your watched list and they
+                        will appear here!
+                      </p>
+                    ) : (
+                      this.state.watched
+                    )}
                   </div>
                 )}
               </div>

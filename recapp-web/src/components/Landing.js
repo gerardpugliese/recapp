@@ -193,18 +193,22 @@ class Landing extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.user_profile;
+        let latest_movie = "";
+        if (results.most_recent_movie !== "") {
+          latest_movie = results.most_recent_movie;
+        }
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
             image: "http://127.0.0.1:8000" + results.image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
-            highest_rated_movie: results.highest_rated_movie,
-            highest_rated_show: results.highest_rated_show,
           },
-          most_recent_movie: results.most_recent_movie,
+          most_recent_movie: latest_movie,
         });
-        this.getRecentWatch();
+        if (latest_movie !== "") {
+          this.getRecentWatch();
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -399,13 +403,17 @@ class Landing extends Component {
         )}
         <div className="landing-wrapper">
           <div className="landing-backdrop">
-            <img
-              alt="latest-movie"
-              src={
-                "https://image.tmdb.org/t/p/original" +
-                this.state.most_recent_movie.backdrop_path
-              }
-            />
+            {this.state.most_recent_movie !== "" ? (
+              <img
+                alt="latest-movie"
+                src={
+                  "https://image.tmdb.org/t/p/original" +
+                  this.state.most_recent_movie.backdrop_path
+                }
+              />
+            ) : (
+              <React.Fragment></React.Fragment>
+            )}
           </div>
           <div className="landing-backdrop-overlay"></div>
           <div id="search-results">
@@ -430,7 +438,11 @@ class Landing extends Component {
               <div className="landing-left">
                 <p className="recent-img-overlay-text">LATEST WATCH </p>
                 <p className="landing-recent-movie-title">
-                  {this.state.most_recent_movie.title}
+                  {this.state.most_recent_movie === "" ? (
+                    <p>None yet :(</p>
+                  ) : (
+                    this.state.most_recent_movie.title
+                  )}
                 </p>
               </div>
             </div>
