@@ -642,33 +642,37 @@ class Profile extends Component {
             <div className="profile-row-1">
               <div className="profile-image-wrapper">
                 <div className="image-name-wrapper">
-                  <img
-                    alt="user-profile"
-                    className="profile-image"
-                    src={this.state.user_profile.image}
-                  />
-                  <p className="profile-username">
-                    {this.state.user_profile.username}
-                  </p>
-                  <div className="top-ten-bkg">
-                    <p
-                      className="top-ten-text"
-                      onClick={() => {
-                        this.showTopTen("Movies");
-                      }}
-                    >
-                      Your Top 10 Movies
+                  <div className="profile-user-wrapper">
+                    <img
+                      alt="user-profile"
+                      className="profile-image"
+                      src={this.state.user_profile.image}
+                    />
+                    <p className="profile-username">
+                      {this.state.user_profile.username}
                     </p>
                   </div>
-                  <div className="top-ten-bkg">
-                    <p
-                      className="top-ten-text"
-                      onClick={() => {
-                        this.showTopTen("Shows");
-                      }}
-                    >
-                      Your Top 10 Shows
-                    </p>
+                  <div className="profile-top-ten-wrapper">
+                    <div className="top-ten-bkg">
+                      <p
+                        className="top-ten-text"
+                        onClick={() => {
+                          this.showTopTen("Movies");
+                        }}
+                      >
+                        Your Top 10 Movies
+                      </p>
+                    </div>
+                    <div className="top-ten-bkg">
+                      <p
+                        className="top-ten-text"
+                        onClick={() => {
+                          this.showTopTen("Shows");
+                        }}
+                      >
+                        Your Top 10 Shows
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
