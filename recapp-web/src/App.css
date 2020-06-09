@@ -314,7 +314,7 @@ body {
 .genre {
   background-color: #333333;
   font-family: "Palanquin Dark", sans-serif;
-  font-size: 2vh;
+  font-size: 1.5vw;
   color: #fff;
   border-radius: 5px;
   padding: 5px;
@@ -730,7 +730,7 @@ body {
 .movie-view-backdrop img {
   position: absolute;
   z-index: 1;
-  margin-top: auto;
+  margin-top: 5vh;
   margin-bottom: auto;
   width: 100vw;
   object-fit: cover;
@@ -744,8 +744,19 @@ body {
     rgb(0, 0, 0, 1) 70%
   );
   z-index: 2;
-  height: 107vh;
+  height: 112vh;
   width: 100vw;
+}
+
+@media screen and (max-width: 600px) {
+  .movie-view-overlay {
+    height: 55vh;
+  }
+}
+@media screen and (max-width: 440px) {
+  .movie-view-overlay {
+    height: 40vh;
+  }
 }
 
 .movie-view-wrapper {
@@ -766,6 +777,16 @@ body {
 .r1-col-1 {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+@media screen and (max-width: 1035px) {
+  .r1-col-1 {
+    display: none;
+  }
+
+  .row-1 {
+    height: fit-content;
+  }
 }
 
 .r1-col-2 {
@@ -794,7 +815,7 @@ body {
 
 .movie-title {
   display: flex;
-  font-size: calc(2px + 2vw);
+  font-size: 2vw;
   font-family: "Palanquin Dark", sans-serif;
   margin-bottom: 0;
   width: fit-content;
@@ -803,13 +824,13 @@ body {
 .movie-rating {
   display: flex;
   font-family: "Palanquin Dark", sans-serif;
-  font-size: calc(2px + 1.5vw);
+  font-size: 1.5vw;
   padding-top: 2.5vh;
   padding-bottom: 2.5vh;
 }
 
 .movie-year {
-  font-size: calc(2px + 1.5vw);
+  font-size: 1.5vw;
   color: #f1f1f1;
   display: flex;
   padding-bottom: 2.5vh;
@@ -817,9 +838,9 @@ body {
 
 .movie-year p {
   font-family: "Palanquin Dark", sans-serif;
-  padding-left: 5px;
   padding-right: 10px;
-  margin-bottom: 0;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 .movie-genres {
@@ -828,17 +849,54 @@ body {
 
 .movie-director {
   font-family: "Palanquin Dark", sans-serif;
-  font-size: calc(2px + 1.5vw);
+  font-size: 1.5vw;
 } /* No director is listed in ShowView, so this is unique to MovieView */
 
 .movie-descr {
-  font-size: calc(2px + 1vw);
+  font-size: 1vw;
   font-family: "Palanquin Dark", sans-serif;
 }
 
 .movie-descr p {
-  font-size: calc(2px + 1.5vw);
+  font-size: 1.5vw;
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 502px) {
+  .movie-title {
+    font-size: 2.5vw;
+    margin-bottom: 0;
+  }
+
+  .movie-rating {
+    font-size: 2vw;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+  }
+
+  .movie-year {
+    font-size: 2vw;
+    padding-bottom: 2.5vh;
+  }
+
+  .movie-year p {
+    padding-right: 10px;
+    margin-bottom: auto;
+    margin-top: auto;
+  }
+
+  .movie-director {
+    font-size: 2vw;
+  } /* No director is listed in ShowView, so this is unique to MovieView */
+
+  .movie-descr {
+    font-size: 1.5vw;
+  }
+
+  .movie-descr p {
+    font-size: 2vw;
+    margin-bottom: 5px;
+  }
 }
 
 .review-wrapper {

@@ -16,15 +16,12 @@ class ShowLanding extends Component {
   }
 
   state = {
-    isHovering: false,
     token: this.props.cookies.get("recapp-token"),
     user_profile: {
       username: "",
       image: "",
       movies_watched: "",
       shows_watched: "",
-      highest_rated_movie: "",
-      highest_rated_show: "",
     },
     most_recent_show: "",
     search_results: [],
@@ -98,18 +95,22 @@ class ShowLanding extends Component {
       .then((resp) => resp.json())
       .then((res) => {
         const results = res.user_profile;
+        let latest_show = "";
+        if (results.most_recent_show !== "") {
+          latest_show = results.most_recent_show;
+        }
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
             image: "http://127.0.0.1:8000" + results.image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
-            highest_rated_movie: results.highest_rated_movie,
-            highest_rated_show: results.highest_rated_show,
           },
-          most_recent_show: results.most_recent_show,
+          most_recent_show: latest_show,
         });
-        this.getRecentWatch();
+        if (latest_show !== "") {
+          this.getRecentWatch();
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -276,13 +277,17 @@ class ShowLanding extends Component {
         )}
         <div className="landing-wrapper">
           <div className="landing-backdrop">
-            <img
-              alt="latest-show"
-              src={
-                "https://image.tmdb.org/t/p/original" +
-                this.state.most_recent_show.backdrop_path
-              }
-            />
+            {this.state.most_recent_show !== "" ? (
+              <img
+                alt="latest-show"
+                src={
+                  "https://image.tmdb.org/t/p/original" +
+                  this.state.most_recent_show.backdrop_path
+                }
+              />
+            ) : (
+              <React.Fragment></React.Fragment>
+            )}
           </div>
           <div className="landing-backdrop-overlay"></div>
           <div id="search-results">
@@ -307,7 +312,12 @@ class ShowLanding extends Component {
               <div className="landing-left">
                 <p className="recent-img-overlay-text">LATEST WATCH </p>
                 <p className="landing-recent-movie-title">
-                  {this.state.most_recent_show.name}
+                  {this.state.most_recent_show === "" ? (
+                    <p>None yet :(</p>
+                  ) : (
+                    this.state.most_recent_show.name
+                  )}
+                  {}
                 </p>
               </div>
             </div>
