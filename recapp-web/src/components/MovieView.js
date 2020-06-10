@@ -141,7 +141,10 @@ class MovieView extends Component {
         });
 
         if (this.state.movie_state === 2) {
-          this.setState({ rating_updated: true });
+          this.setState({
+            rating_updated: true,
+            movie_state: res.movie_state.state,
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -345,10 +348,10 @@ class MovieView extends Component {
   }
 
   componentDidMount() {
+    this.getMovieState();
     this.getProfileInformation();
     this.getMovieInfo();
     this.getSimilarMovie();
-    this.getMovieState();
     this.getMovieCredits();
     this.getRatingImages();
   }
