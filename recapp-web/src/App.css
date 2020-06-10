@@ -87,7 +87,6 @@ body {
 /* START OF ActorRow CLASSES */
 
 .actor-row-wrapper {
-  padding-left: 10px;
   padding-right: 10px;
 }
 
@@ -97,6 +96,13 @@ body {
 
 .actor-image:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  .actor-image {
+    width: 200px;
+    height: 300px;
+  }
 }
 
 .default-img-bkg {
@@ -661,11 +667,17 @@ body {
 .nowplaying-img {
   width: 270px;
   height: 400px;
-  min-width: 200px;
   border: 1.5px solid;
   border-image-source: linear-gradient(to right, #000, #1f1f1e);
   border-image-slice: 1;
 } /* Also used in ShowRow */
+
+@media screen and (max-width: 650px) {
+  .nowplaying-img {
+    width: 200px;
+    height: 300px;
+  }
+}
 
 .nowplaying-img:hover {
   border: 2px white solid;
@@ -755,12 +767,12 @@ body {
 }
 @media screen and (max-width: 440px) {
   .movie-view-overlay {
-    height: 40vh;
+    height: 50vh;
   }
 }
 
 .movie-view-wrapper {
-  margin-top: 14vh;
+  margin-top: 10vh;
   width: 100vw;
   position: absolute;
   z-index: 2;
@@ -862,9 +874,9 @@ body {
   margin-bottom: 5px;
 }
 
-@media screen and (max-width: 502px) {
+@media screen and (max-width: 1035px) {
   .movie-title {
-    font-size: 2.5vw;
+    font-size: 3vw;
     margin-bottom: 0;
   }
 
@@ -895,6 +907,44 @@ body {
 
   .movie-descr p {
     font-size: 2vw;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 502px) {
+  .movie-title {
+    font-size: 3.5vw;
+    margin-bottom: 0;
+  }
+
+  .movie-rating {
+    font-size: 3vw;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+  }
+
+  .movie-year {
+    font-size: 3vw;
+    padding-bottom: 1.5vh;
+  }
+
+  .movie-year p {
+    padding-right: 10px;
+    margin-bottom: auto;
+    margin-top: auto;
+  }
+
+  .movie-director {
+    font-size: 3vw;
+  } /* No director is listed in ShowView, so this is unique to MovieView */
+
+  .movie-descr {
+    font-size: 2.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .movie-descr p {
+    font-size: 3vw;
     margin-bottom: 5px;
   }
 }
@@ -931,6 +981,20 @@ body {
   cursor: pointer;
 }
 
+@media screen and (max-width: 502px) {
+  .review-header {
+    font-size: 3vw;
+  }
+
+  .user-rating-wrapper {
+    font-size: 3vw;
+  }
+
+  .review-link {
+    font-size: 3vw;
+  }
+}
+
 .row-2 {
   width: 75%;
   margin-left: auto;
@@ -939,10 +1003,31 @@ body {
   margin-bottom: 10vh;
 }
 
+@media screen and (max-width: 600px) {
+  .row-1 {
+    width: 85%;
+  }
+
+  .row-2 {
+    width: 85%;
+  }
+}
+
 .cast-header {
   font-family: "Palanquin Dark", sans-serif;
   font-size: 3vh;
   margin-bottom: 0;
+}
+@media screen and (max-width: 502px) {
+  .cast-header {
+    font-size: 3.5vw;
+  }
+  .actor-name {
+    font-size: 3vw;
+  }
+  .actor-character {
+    font-size: 3vw;
+  }
 }
 
 .results-row {
@@ -950,6 +1035,16 @@ body {
   overflow-x: scroll;
   border-top: 3px #84142d solid;
   padding-top: 2vh;
+}
+
+@media screen and (max-width: 650px) {
+  .results-row {
+    overflow-y: hidden;
+  }
+
+  .actor-row-wrapper {
+    height: 375px;
+  }
 }
 
 .empty-actors {
@@ -1379,6 +1474,9 @@ body {
     flex-wrap: nowrap;
   }
   .profile-watched {
+    flex-wrap: nowrap;
+  }
+  .credits-list-wrapper {
     flex-wrap: nowrap;
   }
 }
