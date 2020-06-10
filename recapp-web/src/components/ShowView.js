@@ -470,7 +470,12 @@ class ShowView extends Component {
                       <div className="user-rating-wrapper">
                         <Rating rating={this.state.user_show_rating / 10} />
                       </div>
-                      <p className="review-link">see your full review.</p>
+                      <p
+                        className="review-link"
+                        onClick={() => this.showRating()}
+                      >
+                        see your full review.
+                      </p>
                     </div>
                   )}
                 </div>
