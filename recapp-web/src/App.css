@@ -217,10 +217,12 @@ body {
 .credits-info-bio {
   font-family: "Palanquin Dark", sans-serif;
   font-size: 1.2vw;
+  height: 35vh;
+  overflow: scroll;
 }
 
 .credits-results {
-  margin-top: 14vh;
+  margin-top: 10vh;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -677,6 +679,33 @@ body {
     width: 200px;
     height: 300px;
   }
+
+  .credits-header-img {
+    width: 200px;
+    height: 300px;
+    margin: auto;
+  }
+
+  .credits-header {
+    display: block;
+    margin-bottom: 2vh;
+  }
+
+  .credits-info-bio {
+    height: fit-content;
+  }
+
+  .credits-info-wrapper {
+    margin-left: 0;
+  }
+
+  .credits-info-name {
+    margin-top: 2vh;
+  }
+
+  .credits-header-img-wrapper {
+    display: flex;
+  }
 }
 
 .nowplaying-img:hover {
@@ -799,6 +828,9 @@ body {
   .row-1 {
     height: fit-content;
   }
+
+  .credits-info-wrapper {
+  }
 }
 
 .r1-col-2 {
@@ -908,6 +940,31 @@ body {
   .movie-descr p {
     font-size: 2vw;
     margin-bottom: 5px;
+  }
+
+  .credits-list-header {
+    font-size: 3vw;
+    margin-bottom: 2vh;
+  }
+
+  .credits-info-name {
+    font-size: 3vw;
+  }
+
+  .credits-info-birthday {
+    font-size: 2vw;
+  }
+
+  .credits-info-bio-header {
+    font-size: 2vw;
+  }
+
+  .credits-info-bio {
+    font-size: 1.5vw;
+  }
+
+  .credits-info-birthplace {
+    font-size: 2vw;
   }
 }
 
@@ -1478,6 +1535,8 @@ body {
   }
   .credits-list-wrapper {
     flex-wrap: nowrap;
+    height: fit-content;
+    overflow-x: scroll;
   }
 }
 
