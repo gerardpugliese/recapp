@@ -78,7 +78,7 @@ class MovieView extends Component {
 
   getRatingImages() {
     var results = "";
-    const urlString = "http://127.0.0.1:8000/api/images/get_rating_images/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/images/get_rating_images/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -89,9 +89,9 @@ class MovieView extends Component {
       .then((res) => {
         results = res.rating_images;
         this.setState({
-          imdb_img: "http://127.0.0.1:8000" + results.imdb_image,
+          imdb_img: process.env.REACT_APP_API_URL + results.imdb_image,
           rottentomatoes_img:
-            "http://127.0.0.1:8000" + results.rotten_tomatoes_image,
+            process.env.REACT_APP_API_URL + results.rotten_tomatoes_image,
         });
       })
       .catch((err) => console.log(err));
@@ -99,7 +99,7 @@ class MovieView extends Component {
 
   getProfileInformation() {
     //GET request to db to get Profile Model which is auto-created once a user registers
-    const urlString = "http://127.0.0.1:8000/api/userprofile/get_user_profile/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/get_user_profile/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -112,8 +112,8 @@ class MovieView extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: "http://127.0.0.1:8000" + results.image,
-            def_image: "http://127.0.0.1:8000" + results.def_image,
+            image: process.env.REACT_APP_API_URL + results.image,
+            def_image: process.env.REACT_APP_API_URL + results.def_image,
             highest_genre: results.highest_rated_genre,
             highest_movie: results.highest_rated_movie,
           },
@@ -124,7 +124,7 @@ class MovieView extends Component {
   }
 
   getMovieState() {
-    const movieInfoURL = `http://127.0.0.1:8000/api/mark/${this.state.movie_id}/get_movie_state/`;
+    const movieInfoURL = `${process.env.REACT_APP_API_URL}/api/mark/${this.state.movie_id}/get_movie_state/`;
     fetch(movieInfoURL, {
       method: "GET",
       headers: {

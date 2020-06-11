@@ -32,7 +32,7 @@ class ActorView extends Component {
 
   getProfileInformation() {
     //GET request to db to get Profile Model which is auto-created once a user registers
-    const urlString = "http://127.0.0.1:8000/api/userprofile/get_user_profile/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/get_user_profile/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -45,8 +45,8 @@ class ActorView extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: "http://127.0.0.1:8000" + results.image,
-            def_image: "http://127.0.0.1:8000" + results.def_image,
+            image: process.env.REACT_APP_API_URL + results.image,
+            def_image: process.env.REACT_APP_API_URL + results.def_image,
             highest_genre: results.highest_rated_genre,
             highest_movie: results.highest_rated_movie,
           },

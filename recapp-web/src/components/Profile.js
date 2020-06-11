@@ -56,7 +56,7 @@ class Profile extends Component {
   };
 
   setTopTen(name, img, number, id, media_type) {
-    const urlString = "http://127.0.0.1:8000/api/topten/set_top_ten/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/topten/set_top_ten/`;
     fetch(urlString, {
       method: "POST",
       headers: {
@@ -82,7 +82,7 @@ class Profile extends Component {
     //Make GET request to database
     let noOneMovieID = "";
     let noOneShowID = "";
-    const urlString = "http://127.0.0.1:8000/api/topten/get_top_ten/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/topten/get_top_ten/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -137,7 +137,7 @@ class Profile extends Component {
   }
 
   getInterestedMovies() {
-    const urlString = "http://127.0.0.1:8000/api/mark/get_interested_list/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/mark/get_interested_list/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -194,7 +194,7 @@ class Profile extends Component {
   }
 
   getFavoriteMovies() {
-    const urlString = "http://127.0.0.1:8000/api/mark/get_favorites_list/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/mark/get_favorites_list/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -265,7 +265,7 @@ class Profile extends Component {
   }
 
   getWatchedMovies() {
-    const urlString = "http://127.0.0.1:8000/api/mark/get_watched_list/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/mark/get_watched_list/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -322,7 +322,7 @@ class Profile extends Component {
 
   getProfileInformation() {
     //GET request to db to get Profile Model which is auto-created once a user registers
-    const urlString = "http://127.0.0.1:8000/api/userprofile/get_user_profile/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/get_user_profile/`;
     fetch(urlString, {
       method: "GET",
       headers: {
@@ -335,10 +335,10 @@ class Profile extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: "http://127.0.0.1:8000" + results.image,
-            def_image: "http://127.0.0.1:8000" + results.def_image,
+            image: process.env.REACT_APP_API_URL + results.image,
+            def_image: process.env.REACT_APP_API_URL + results.def_image,
             def_profile_img:
-              "http://127.0.0.1:8000" + results.def_profile_image,
+              process.env.REACT_APP_API_URL + results.def_profile_image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
             highest_rated_movie: results.highest_rated_movie,
@@ -517,8 +517,7 @@ class Profile extends Component {
   updateTopTen(top_ten, type) {
     if (type === "Movies") {
       this.setState({ top_ten_movies: top_ten });
-      const urlString =
-        "http://127.0.0.1:8000/api/userprofile/set_top_ten_movies/";
+      const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/set_top_ten_movies/`;
       fetch(urlString, {
         method: "POST",
         headers: {

@@ -16,7 +16,7 @@ class Icons extends Component {
 
   markInterested(id) {
     if (this.state.item_state === 1) {
-      const urlString = `http://127.0.0.1:8000/api/mark/${this.state.item_id}/remove_state/`;
+      const urlString = `${process.env.REACT_APP_API_URL}/api/mark/${this.state.item_id}/remove_state/`;
       fetch(urlString, {
         method: "DELETE",
         headers: {
@@ -32,7 +32,7 @@ class Icons extends Component {
           console.log(err);
         });
     } else {
-      const urlString = "http://127.0.0.1:8000/api/mark/mark_interested/";
+      const urlString = `${process.env.REACT_APP_API_URL}/api/mark/mark_interested/`;
       if (this.state.media_type === "movie") {
         fetch(urlString, {
           method: "POST",
@@ -72,7 +72,7 @@ class Icons extends Component {
   }
   handleWatched() {
     if (this.state.item_state === 2) {
-      const urlString = `http://127.0.0.1:8000/api/mark/${this.state.item_id}/remove_state/`;
+      const urlString = `${process.env.REACT_APP_API_URL}/api/mark/${this.state.item_id}/remove_state/`;
       fetch(urlString, {
         method: "DELETE",
         headers: {
@@ -97,7 +97,7 @@ class Icons extends Component {
   }
   markFavorite() {
     if (this.state.is_favorite === true) {
-      const urlString = `http://127.0.0.1:8000/api/mark/${this.state.item_id}/remove_favorite/`;
+      const urlString = `${process.env.REACT_APP_API_URL}/api/mark/${this.state.item_id}/remove_favorite/`;
       fetch(urlString, {
         method: "GET",
         headers: {
@@ -114,7 +114,7 @@ class Icons extends Component {
           console.log(err);
         });
     } else {
-      const urlString = `http://127.0.0.1:8000/api/mark/True/favorite_movie/`;
+      const urlString = `${process.env.REACT_APP_API_URL}/api/mark/True/favorite_movie/`;
       if (this.state.media_type === "movie") {
         fetch(urlString, {
           method: "POST",

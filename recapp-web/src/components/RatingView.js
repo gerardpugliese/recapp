@@ -18,7 +18,7 @@ class RatingView extends Component {
   };
 
   markWatched() {
-    const urlString = "http://127.0.0.1:8000/api/mark/mark_watched/";
+    const urlString = `${process.env.REACT_APP_API_URL}/api/mark/mark_watched/`;
     if (this.state.media_type === "movie") {
       fetch(urlString, {
         method: "POST",

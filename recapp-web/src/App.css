@@ -25,7 +25,7 @@ body {
 
 .welcome-content-wrapper {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
 }
 
@@ -144,13 +144,13 @@ body {
 /* START OF ActorView CLASSES */
 
 .wrapper {
-  height: 100%;
+  height: 100vh;
   color: white;
   background: rgb(0, 0, 0, 0);
   z-index: 3;
   position: absolute;
   margin: auto;
-  width: 100%;
+  width: 100vw;
 } /* Also used in MovieView, ShowView */
 
 .results {
@@ -610,16 +610,6 @@ body {
   min-height: 50vh;
   margin: auto;
 } /* Also used in Register */
-
-@media screen and (max-width: 581px) {
-  .movie-img {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: -75%;
-    height: 70%;
-    width: auto;
-  }
-}
 
 .bkg-info-wrapper {
   position: absolute;
