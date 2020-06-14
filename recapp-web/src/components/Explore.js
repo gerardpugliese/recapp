@@ -94,7 +94,7 @@ class Explore extends Component {
             >
               REGISTER
             </Link>
-            <Link to="/explore" className="navbar-active">
+            <Link to="/explore" className="navbar-active nav-margin-right">
               EXPLORE
             </Link>
           </Nav>

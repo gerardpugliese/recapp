@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     bkg_img_src: "",
     bkg_img_name: "",
+    bkg_img_poster: "",
   };
 
   loadMovieImages() {
@@ -38,7 +39,13 @@ class App extends Component {
             console.log(resp);
             let bkg_img =
               "https://image.tmdb.org/t/p/original" + resp.backdrop_path;
-            this.setState({ bkg_img_src: bkg_img, bkg_img_name: bkg_name });
+            let bkg_poster =
+              "https://image.tmdb.org/t/p/original" + resp.poster_path;
+            this.setState({
+              bkg_img_src: bkg_img,
+              bkg_img_name: bkg_name,
+              bkg_img_poster: bkg_poster,
+            });
           })
           .catch((err) => console.log(err));
       })
@@ -70,7 +77,10 @@ class App extends Component {
                 <Link to="/register" className="navbar-inactive">
                   REGISTER
                 </Link>
-                <Link to="/explore" className="navbar-inactive">
+                <Link
+                  to="/explore"
+                  className="navbar-inactive nav-margin-right"
+                >
                   EXPLORE
                 </Link>
               </Nav>
@@ -101,6 +111,11 @@ class App extends Component {
             alt="poster"
             src={this.state.bkg_img_src}
             className="movie-img"
+          ></img>
+          <img
+            alt="bkg-poster"
+            src={this.state.bkg_img_poster}
+            className="movie-poster"
           ></img>
         </div>
         <div className="bkg-info-wrapper">

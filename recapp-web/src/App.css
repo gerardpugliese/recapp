@@ -247,7 +247,7 @@ body {
 }
 
 .nowplaying-wrapper {
-  margin-top: 5vh;
+  margin-top: 8vh;
   margin-left: auto;
   margin-right: auto;
   scrollbar-color: #fff;
@@ -255,7 +255,8 @@ body {
 
 .nowplaying-movie-wrapper {
   display: flex;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 20px;
   scrollbar-color: #fff;
 }
@@ -477,7 +478,6 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 2.5vh;
-  width: 40vw;
   margin-right: auto;
   margin-left: auto;
 }
@@ -543,6 +543,7 @@ body {
   border-radius: 0.2rem;
   border-color: #fff;
   margin-bottom: 2.5vh;
+  font-size: 2vh;
   font-family: "Palanquin Dark", sans-serif;
 }
 
@@ -588,6 +589,28 @@ body {
   height: 100%;
 }
 
+@media screen and (max-width: 560px) {
+  .login-form-wrapper {
+    width: 55vw;
+  }
+  .login-form-label-wrapper {
+    width: 55vw;
+  }
+  .login-form-input {
+    width: 55vw;
+  }
+  .login-form-error-wrapper {
+    width: 55vw;
+  }
+  .login-logo-text {
+    font-size: 7vh;
+  }
+
+  .login-logo-icon {
+    font-size: 7vh;
+  }
+}
+
 .opaque-overlay {
   position: absolute;
   background-color: #000;
@@ -613,6 +636,42 @@ body {
   margin: auto;
 } /* Also used in Register */
 
+.movie-poster {
+  width: 100%;
+  z-index: 1;
+  margin: auto;
+  display: none;
+}
+
+@media screen and (max-width: 485px) {
+  .movie-img {
+    display: none;
+  }
+  .movie-poster {
+    display: inline;
+    height: 80%;
+  }
+
+  .logo-icon {
+    font-size: 7vh;
+  }
+
+  .logo-wrapper {
+    padding-bottom: 2vh;
+  }
+
+  .welcome-text {
+    font-size: 2vh;
+  }
+
+  .welcome-text-last {
+    font-size: 2vh;
+  }
+
+  .welcome-button {
+    font-size: 2vh;
+  }
+}
 .bkg-info-wrapper {
   position: absolute;
   z-index: 1;
@@ -670,6 +729,11 @@ body {
   .nowplaying-img {
     width: 200px;
     height: 300px;
+  }
+
+  .overlay {
+    top: 200px;
+    width: 200px;
   }
 
   .credits-header-img {
@@ -1845,6 +1909,57 @@ body {
   background: rgb(18, 18, 18, 1);
 }
 
+@media screen and (max-width: 560px) {
+  .register-logo-icon {
+    height: 100%;
+    display: block;
+    font-size: 7vh;
+    padding-right: 10px;
+  }
+  .register-logo-text {
+    display: block;
+    font-size: 7vh;
+    font-family: "Bungee", cursive;
+    margin-bottom: 0;
+  }
+  .register-form-error-wrapper {
+    width: 55vw;
+    height: 3.5vh;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(223, 28, 41);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+  }
+  .register-form-label-wrapper {
+    width: 55vw;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .register-form-label {
+    font-family: "Palanquin Dark", sans-serif;
+    font-size: 2.5vh;
+  }
+
+  .register-form-input {
+    width: 55vw;
+    margin-bottom: 30px;
+    border-radius: 0.2rem;
+    font-family: "Palanquin Dark", sans-serif;
+    padding-left: 3px;
+    padding-right: 3px;
+    opacity: 0.7;
+    font-size: 2vh;
+    color: #000;
+  }
+}
+
 /* END OF Register CLASSES */
 
 /* START OF ShowRow CLASSES */
@@ -2182,14 +2297,20 @@ body {
   width: 100vw;
   background: rgb(0, 0, 0, 1);
   z-index: 3;
+  top: 0;
   height: 7vh;
+}
+
+.nav-margin-right {
+  margin-right: 2vw;
+  padding-right: 0px;
 }
 
 .explore-navbar-logo {
   color: white;
   display: flex;
   align-items: center;
-  padding-left: 4vw;
+  padding-left: 2vw;
 }
 
 .explore-navbar-logo:hover {
@@ -2218,10 +2339,16 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   color: #f0f0f0;
   text-decoration: none;
-  font-size: calc(3px + 1vw);
+  font-size: 2vh;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
+}
+
+@media screen and (max-width: 300px) {
+  .navbar-inactive {
+    font-size: ;
+  }
 }
 
 .navbar-inactive:hover {
@@ -2256,7 +2383,7 @@ body {
   }
 
   .explore-logo-icon {
-    font-size: 14px;
+    font-size: 22px;
   }
 
   .explore-navbar-logo {
@@ -2264,7 +2391,7 @@ body {
   }
 
   .explore-logo-text {
-    font-size: 14px;
+    font-size: 22px;
   }
 
   .navbar-inactive {
@@ -2275,6 +2402,16 @@ body {
   .navbar-active {
     padding-left: 5px;
     padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar-active {
+    font-size: 14px;
+  }
+
+  .navbar-inactive {
+    font-size: 14px;
   }
 }
 
@@ -2336,7 +2473,7 @@ body {
 .navbar-active {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
-  font-size: calc(3px + 1vw);
+  font-size: 2vh;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;

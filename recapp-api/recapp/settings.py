@@ -55,7 +55,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000', 'https://my-recapp.firebaseapp.com'
+    'http://localhost:3000', 'https://my-recapp.firebaseapp.com', 'https://my-recapp.com'
 ]
 ROOT_URLCONF = 'recapp.urls'
 

@@ -20,6 +20,7 @@ class Register extends Component {
     },
     error_raised: false,
     error_text: "",
+    bkg_img_poster: "",
   };
 
   displayError = (error) => {
@@ -58,7 +59,13 @@ class Register extends Component {
           .then((resp) => {
             let bkg_img =
               "https://image.tmdb.org/t/p/original" + resp.backdrop_path;
-            this.setState({ bkg_img_src: bkg_img, bkg_img_name: bkg_name });
+            let bkg_poster =
+              "https://image.tmdb.org/t/p/original" + resp.poster_path;
+            this.setState({
+              bkg_img_src: bkg_img,
+              bkg_img_name: bkg_name,
+              bkg_img_poster: bkg_poster,
+            });
           })
           .catch((err) => console.log(err));
       })
@@ -114,7 +121,7 @@ class Register extends Component {
               </Link>
               <Link
                 to="/explore"
-                className="navbar-inactive non-user-nav-wrapper"
+                className="navbar-inactive non-user-nav-wrapper nav-margin-right"
               >
                 EXPLORE
               </Link>
@@ -191,6 +198,11 @@ class Register extends Component {
             alt="poster"
             src={this.state.bkg_img_src}
             className="movie-img"
+          ></img>
+          <img
+            alt="bkg-poster"
+            src={this.state.bkg_img_poster}
+            className="movie-poster"
           ></img>
         </div>
         <div className="bkg-info-wrapper">
