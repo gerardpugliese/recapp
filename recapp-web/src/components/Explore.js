@@ -84,7 +84,7 @@ class Explore extends Component {
               <p className="explore-logo-text">RECAPP</p>
             </Link>
           </Nav>
-          <Nav className="nav-info">
+          <Nav className="ml-auto">
             <Link to="/login" className="navbar-inactive non-user-nav-wrapper">
               SIGN IN
             </Link>

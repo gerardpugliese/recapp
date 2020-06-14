@@ -298,7 +298,8 @@ body {
 
 .upcoming-movie-view {
   display: flex;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 20px;
 }
 
@@ -649,7 +650,11 @@ body {
   }
   .movie-poster {
     display: inline;
-    height: 80%;
+    height: 85%;
+  }
+
+  .welcome-content-wrapper {
+    height: 90%;
   }
 
   .logo-icon {
@@ -2472,6 +2477,7 @@ body {
 
 .navbar-active {
   font-family: "Palanquin Dark", sans-serif;
+  /* 408ef5 */
   color: #84142d;
   font-size: 2vh;
   padding-left: 10px;
@@ -2482,7 +2488,7 @@ body {
 .navbar-active:hover {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
-  font-size: calc(3px + 1vw);
+  font-size: 2vh;
 }
 
 #account-dropdown {
