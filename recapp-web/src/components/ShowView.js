@@ -117,7 +117,13 @@ class ShowView extends Component {
         this.getSimilarShow();
         this.getShowCredits();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        this.getProfileInformation();
+        this.getShowInfo();
+        this.getSimilarShow();
+        this.getShowCredits();
+      });
   }
 
   getShowInfo() {

@@ -390,7 +390,7 @@ body {
     rgb(0, 0, 0, 1) 75%
   );
   z-index: 2;
-  height: 100vh;
+  height: 110vh;
   margin-top: 7vh;
   width: 100vw;
 }

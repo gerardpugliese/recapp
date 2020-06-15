@@ -153,7 +153,14 @@ class MovieView extends Component {
         this.getMovieCredits();
         this.getRatingImages();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        this.getProfileInformation();
+        this.getMovieInfo();
+        this.getSimilarMovie();
+        this.getMovieCredits();
+        this.getRatingImages();
+      });
   }
 
   getMovieInfo() {
