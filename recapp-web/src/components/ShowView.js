@@ -17,7 +17,6 @@ const cookies = new Cookies();
 class ShowView extends Component {
   constructor(props) {
     super(props);
-    this.getShowState();
     this.iconElement = React.createRef();
   }
 
@@ -113,6 +112,10 @@ class ShowView extends Component {
         if (this.state.show_state === 2) {
           this.setState({ rating_updated: true });
         }
+        this.getProfileInformation();
+        this.getShowInfo();
+        this.getSimilarShow();
+        this.getShowCredits();
       })
       .catch((err) => console.log(err));
   }
@@ -308,10 +311,7 @@ class ShowView extends Component {
   }
 
   componentDidMount() {
-    this.getProfileInformation();
-    this.getShowInfo();
-    this.getSimilarShow();
-    this.getShowCredits();
+    this.getShowState();
   }
 
   render() {

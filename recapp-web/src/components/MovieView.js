@@ -146,6 +146,12 @@ class MovieView extends Component {
             movie_state: res.movie_state.state,
           });
         }
+
+        this.getProfileInformation();
+        this.getMovieInfo();
+        this.getSimilarMovie();
+        this.getMovieCredits();
+        this.getRatingImages();
       })
       .catch((err) => console.log(err));
   }
@@ -185,7 +191,7 @@ class MovieView extends Component {
     var imdb_rating = "";
     var rottentomatoes_rating = "";
     var director = "";
-    const imdbInfoURL = `http://www.omdbapi.com/?i=${imdbID}&apikey=f8dd8e76`;
+    const imdbInfoURL = `https://www.omdbapi.com/?i=${imdbID}&apikey=f8dd8e76`;
     fetch(imdbInfoURL, {
       method: "GET",
     })
@@ -349,11 +355,6 @@ class MovieView extends Component {
 
   componentDidMount() {
     this.getMovieState();
-    this.getProfileInformation();
-    this.getMovieInfo();
-    this.getSimilarMovie();
-    this.getMovieCredits();
-    this.getRatingImages();
   }
 
   logout() {
