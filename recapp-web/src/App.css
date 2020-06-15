@@ -384,11 +384,75 @@ body {
 
 .landing-backdrop-overlay {
   position: absolute;
-  background: linear-gradient(to bottom, rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 1));
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 0, 0, 0.2),
+    rgb(0, 0, 0, 1) 75%
+  );
   z-index: 2;
   height: 100vh;
   margin-top: 7vh;
   width: 100vw;
+}
+
+@media screen and (max-width: 980px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 65%
+    );
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 55%
+    );
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 45%
+    );
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 35%
+    );
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 25%
+    );
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .landing-backdrop-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0, 0.2),
+      rgb(0, 0, 0, 1) 20%
+    );
+  }
 }
 
 .landing-backdrop img {
