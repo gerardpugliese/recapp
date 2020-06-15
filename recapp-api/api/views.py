@@ -168,7 +168,7 @@ class MarkViewSet(viewsets.ModelViewSet):
                 return Response(response, status=status.HTTP_200_OK)    
             except: 
                 mark = Mark.objects.create(user=user, item_id=req_show_id, media_type="tv", state=2, is_favorite=False, rating=req_rating)
-                user_profile.most_recent_movie = req_movie_id
+                user_profile.most_recent_show = req_show_id
                 print(user_profile.most_recent_movie)
                 user_profile.save()
                 serializer = MarkSerializer(mark, many=False)
