@@ -1982,12 +1982,12 @@ body {
   .register-logo-icon {
     height: 100%;
     display: block;
-    font-size: 7vh;
+    font-size: 6vh;
     padding-right: 10px;
   }
   .register-logo-text {
     display: block;
-    font-size: 7vh;
+    font-size: 6vh;
     font-family: "Bungee", cursive;
     margin-bottom: 0;
   }
@@ -2003,6 +2003,9 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 2vh;
+  }
+  .error-text {
+    font-size: 2vh;
   }
   .register-form-label-wrapper {
     width: 55vw;
@@ -2025,6 +2028,7 @@ body {
     padding-right: 3px;
     opacity: 0.7;
     font-size: 2vh;
+    height: 3vh;
     color: #000;
   }
 }
@@ -2153,8 +2157,8 @@ body {
 }
 
 .default-edit-topten-img {
-  width: 35vh;
-  height: 50vh;
+  width: 270px;
+  height: 400px;
   background-color: black;
   display: flex;
   margin-left: 2vw;
@@ -2162,8 +2166,8 @@ body {
 }
 
 .edit-window-img {
-  width: 35vh;
-  height: 50vh;
+  width: 270px;
+  height: 400px;
   margin-left: 2vw;
   margin-right: 1vw;
 }
@@ -2321,9 +2325,49 @@ body {
 }
 
 .top-ten-img {
-  width: 35vh;
-  height: 50vh;
+  width: 270px;
+  height: 400px;
 } /* Also in TopTenRow */
+
+@media screen and (max-width: 1105px) {
+  .top-ten-img {
+    width: 200px;
+    height: 300px;
+  }
+  .default-edit-topten-img {
+    display: none;
+  }
+  .top-ten {
+    height: 60vh;
+  }
+  .edit-window-img {
+    display: none;
+  }
+  .edit-window {
+    display: block;
+  }
+  .top-ten-default-wrapper {
+    height: fit-content;
+  }
+  .confirm-wrapper {
+    margin-top: 10vh;
+  }
+  .topten-search-bar-wrapper {
+    padding-left: 0;
+    margin-left: 2vw;
+  }
+  .top-ten-nondefault {
+    width: 200px;
+    height: 300px;
+  }
+  .top-ten-default {
+    width: 200px;
+    height: 300px;
+  }
+  .topten-search-results {
+    width: 100%;
+  }
+}
 
 /* END OF TopTen CLASSES */
 
