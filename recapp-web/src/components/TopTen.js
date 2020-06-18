@@ -101,6 +101,7 @@ class TopTen extends Component {
   backEditWindow() {
     this.setState({
       show_edit_window: false,
+      show_confirm_edit: false,
       edit_item: {
         name: "",
         img: "",
