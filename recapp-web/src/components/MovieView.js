@@ -414,7 +414,7 @@ class MovieView extends Component {
             </Link>
             <Link to="/shows" className="navbar-inactive non-user-nav-wrapper">
               <p className="non-user-nav-text" style={{ marginRight: "10px" }}>
-                TV SHOWS
+                SHOWS
               </p>
             </Link>
             <div className="search-bar-wrapper">

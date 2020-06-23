@@ -1728,7 +1728,7 @@ body {
 }
 
 .rating-view-row-1 {
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   display: flex;
   margin-left: 95%;
@@ -1771,6 +1771,37 @@ body {
   color: lightgrey;
   margin-left: 0.5vh;
   font-family: "Palanquin Dark", sans-serif;
+}
+
+@media screen and (max-width: 975px) {
+  .rating-view-left-col {
+    display: none;
+  }
+  .rating-view-right-col {
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+  }
+
+  .slidecontainer {
+    display: none;
+  }
+
+  .numinputcontainer {
+    display: block;
+    color: #000;
+    width: 30%;
+    height: fit-content;
+    margin: auto;
+  }
+
+  .rating-view-title {
+    font-size: 2vh;
+  }
+
+  .rating-view-year {
+    font-size: 2vh;
+  }
 }
 
 .rating-view-row-3 {
@@ -2486,6 +2517,12 @@ body {
   font-size: min(4vw, 16px);
 }
 
+@media screen and (max-width: 767px) {
+  .explore-navbar-logo {
+    margin-left: 4vw;
+  }
+}
+
 @media screen and (max-width: 581px) {
   .user-nav-wrapper {
     margin-right: 2vw;
@@ -2496,15 +2533,15 @@ body {
   }
 
   .explore-logo-icon {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .explore-navbar-logo {
-    margin-left: 2vw;
+    margin-left: 4vw;
   }
 
   .explore-logo-text {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .navbar-inactive {
@@ -2678,7 +2715,7 @@ body {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 100%;
-  width: 92vw;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
   padding-top: 2vh;

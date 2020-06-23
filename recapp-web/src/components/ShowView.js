@@ -349,7 +349,7 @@ class ShowView extends Component {
                 className="non-user-nav-text"
                 style={{ "margin-right": "10px" }}
               >
-                TV SHOWS
+                SHOWS
               </p>
             </Link>
             <div className="search-bar-wrapper">

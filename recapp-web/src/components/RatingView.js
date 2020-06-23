@@ -122,6 +122,17 @@ class RatingView extends Component {
                   onChange={(value) => this.reflectSliderChanges(value)}
                 />
               </div>
+              <div className="numinputcontainer">
+                <label for="quantity">Rating (0.0 to 10.0)</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  step="0.1"
+                  min="0"
+                  max="10"
+                />
+              </div>
             </div>
 
             <div className="rating-view-row-5">

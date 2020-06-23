@@ -572,7 +572,7 @@ class Profile extends Component {
                   className="non-user-nav-text"
                   style={{ marginRight: "10px" }}
                 >
-                  TV SHOWS
+                  SHOWS
                 </p>
               </Link>
               <div className="search-bar-wrapper">
