@@ -18,6 +18,8 @@ class RatingView extends Component {
   };
 
   markWatched() {
+    console.log(this.state.slider_value);
+    console.log(typeof this.state.slider_value);
     const urlString = `${process.env.REACT_APP_API_URL}/api/mark/mark_watched/`;
     if (this.state.media_type === "movie") {
       fetch(urlString, {
@@ -78,6 +80,11 @@ class RatingView extends Component {
     this.setState({ slider_value: value });
   }
 
+  reflectInputChanges() {
+    let input = document.getElementsByClassName("num-input")[0];
+    this.setState({ slider_value: input.value * 10 });
+  }
+
   reflectReviewChanges(event) {
     this.setState({ review_text: event.target.value });
   }
@@ -127,10 +134,13 @@ class RatingView extends Component {
                 <input
                   type="number"
                   id="quantity"
+                  class="num-input"
                   name="quantity"
                   step="0.1"
                   min="0"
                   max="10"
+                  style={{ color: "black" }}
+                  onChange={() => this.reflectInputChanges()}
                 />
               </div>
             </div>

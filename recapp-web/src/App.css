@@ -1711,6 +1711,12 @@ body {
   display: flex;
 }
 
+@media screen and (max-width: 600px) {
+  .rating-view {
+    width: 85vw;
+  }
+}
+
 .rating-view-left-col {
   width: 30%;
   margin-left: auto;
@@ -1773,6 +1779,10 @@ body {
   font-family: "Palanquin Dark", sans-serif;
 }
 
+.numinputcontainer {
+  display: none;
+}
+
 @media screen and (max-width: 975px) {
   .rating-view-left-col {
     display: none;
@@ -1788,11 +1798,15 @@ body {
   }
 
   .numinputcontainer {
-    display: block;
-    color: #000;
-    width: 30%;
+    display: flex;
+    color: white;
+    width: 100%;
     height: fit-content;
     margin: auto;
+  }
+
+  .numinputcontainer label {
+    width: 40%;
   }
 
   .rating-view-title {
@@ -1802,6 +1816,10 @@ body {
   .rating-view-year {
     font-size: 2vh;
   }
+
+  .rating-view {
+    height: 50vh;
+  }
 }
 
 .rating-view-row-3 {
@@ -1810,6 +1828,14 @@ body {
   display: flex;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media screen and (max-width: 975px) {
+  .rating-view-row-3 {
+    width: 100%;
+    margin-left: 10%;
+    height: 15%;
+  }
 }
 
 .slidecontainer {
@@ -2009,6 +2035,12 @@ body {
   background: rgb(18, 18, 18, 1);
 }
 
+@media screen and (max-height: 600px) {
+  .le-wrapper {
+    margin-top: 10vh;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .register-logo-icon {
     height: 100%;
@@ -2052,15 +2084,19 @@ body {
 
   .register-form-input {
     width: 55vw;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border-radius: 0.2rem;
     font-family: "Palanquin Dark", sans-serif;
     padding-left: 3px;
     padding-right: 3px;
     opacity: 0.7;
-    font-size: 2vh;
-    height: 3vh;
+    font-size: 12px;
+    height: 27px;
     color: #000;
+  }
+
+  .register-form-button {
+    margin-top: 1.5vh;
   }
 }
 
@@ -2523,48 +2559,6 @@ body {
   }
 }
 
-@media screen and (max-width: 581px) {
-  .user-nav-wrapper {
-    margin-right: 2vw;
-  }
-
-  .non-user-nav-text {
-    font-size: 12px;
-  }
-
-  .explore-logo-icon {
-    font-size: 20px;
-  }
-
-  .explore-navbar-logo {
-    margin-left: 4vw;
-  }
-
-  .explore-logo-text {
-    font-size: 20px;
-  }
-
-  .navbar-inactive {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  .navbar-active {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .navbar-active {
-    font-size: 14px;
-  }
-
-  .navbar-inactive {
-    font-size: 14px;
-  }
-}
-
 .search-bar-wrapper {
   border-radius: 20px;
   padding-left: 5px;
@@ -2634,6 +2628,57 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   color: #84142d;
   font-size: 2vh;
+}
+
+@media screen and (max-width: 581px) {
+  .user-nav-wrapper {
+    margin-right: 2vw;
+  }
+
+  .non-user-nav-text {
+    font-size: 12px;
+  }
+
+  .explore-logo-icon {
+    font-size: 20px;
+  }
+
+  .explore-navbar-logo {
+    margin-left: 4vw;
+  }
+
+  .explore-logo-text {
+    font-size: 20px;
+  }
+
+  .navbar-inactive {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .navbar-active {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navbar-active {
+    font-size: 14px;
+  }
+
+  .navbar-inactive {
+    font-size: 14px;
+  }
+  @media screen and (max-height: 600px) {
+    .navbar-active {
+      font-size: 10px;
+    }
+
+    .navbar-inactive {
+      font-size: 10px;
+    }
+  }
 }
 
 #account-dropdown {
