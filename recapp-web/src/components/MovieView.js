@@ -53,8 +53,10 @@ class MovieView extends Component {
     search_results: [],
     show_rating: false,
     rating_updated: false,
-    imdb_img: "",
-    rottentomatoes_img: "",
+    imdb_img:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Fimdb_logo.png?alt=media&token=04f41087-7552-4d33-8e8f-91e1aa43b19c",
+    rottentomatoes_img:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Ftomato-svg-logo-2.png?alt=media&token=5c874fca-90ba-4802-8541-9fa32bf05f1b",
     account_dropdown_visible: false,
   };
 
@@ -74,27 +76,6 @@ class MovieView extends Component {
         user_movie_review: review,
       });
     }
-  }
-
-  getRatingImages() {
-    var results = "";
-    const urlString = `${process.env.REACT_APP_API_URL}/api/images/get_rating_images/`;
-    fetch(urlString, {
-      method: "GET",
-      headers: {
-        Authorization: `Token ${this.state.token}`,
-      },
-    })
-      .then((resp) => resp.json())
-      .then((res) => {
-        results = res.rating_images;
-        this.setState({
-          imdb_img: process.env.REACT_APP_API_URL + results.imdb_image,
-          rottentomatoes_img:
-            process.env.REACT_APP_API_URL + results.rotten_tomatoes_image,
-        });
-      })
-      .catch((err) => console.log(err));
   }
 
   getProfileInformation() {
@@ -159,7 +140,6 @@ class MovieView extends Component {
         this.getMovieInfo();
         this.getSimilarMovie();
         this.getMovieCredits();
-        this.getRatingImages();
       });
   }
 
@@ -515,14 +495,24 @@ class MovieView extends Component {
                       className="rating-img-imdb"
                       alt="IMDb"
                       src={this.state.imdb_img}
-                    />{" "}
-                    <Rating rating={this.state.movie_imdb_rating} />
+                    />
+                    {this.state.movie_imdb_rating === "" ? (
+                      <p className="rating-placeholder">N/A</p>
+                    ) : (
+                      <Rating rating={this.state.movie_imdb_rating} />
+                    )}
+
                     <img
                       className="rating-img-rotten-tomatoes"
                       alt="Rotten Tomatoes"
                       src={this.state.rottentomatoes_img}
                     />
-                    <Rating rating={this.state.movie_rottentomatoes_rating} />
+                    {console.log(this.state.movie_rottentomatoes_rating === "")}
+                    {this.state.movie_rottentomatoes_rating === "" ? (
+                      <p className="rating-placeholder">N/A</p>
+                    ) : (
+                      <Rating rating={this.state.movie_rottentomatoes_rating} />
+                    )}
                     <Icons
                       item_id={this.state.movie_id}
                       state={this.state.movie_state}
