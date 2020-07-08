@@ -117,7 +117,10 @@ body {
   max-width: 100%;
   width: 100%;
   margin-top: auto;
-  margin-bottom: auto;
+}
+
+.actor-default-img:hover {
+  cursor: pointer;
 }
 
 .actor-description {
@@ -515,73 +518,13 @@ body {
   position: absolute;
   background: linear-gradient(
     to bottom,
-    rgb(0, 0, 0, 0.2),
-    rgb(0, 0, 0, 1) 75%
+    rgb(0, 0, 0, 0.1),
+    rgb(0, 0, 0, 1) 85%
   );
   z-index: 2;
-  height: 110vh;
+  height: 70vw;
   margin-top: 7vh;
   width: 100vw;
-}
-
-@media screen and (max-width: 980px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 65%
-    );
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 55%
-    );
-  }
-}
-
-@media screen and (max-width: 710px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 45%
-    );
-  }
-}
-
-@media screen and (max-width: 555px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 35%
-    );
-  }
-}
-
-@media screen and (max-width: 460px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 25%
-    );
-  }
-}
-
-@media screen and (max-width: 340px) {
-  .landing-backdrop-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0, 0.2),
-      rgb(0, 0, 0, 1) 20%
-    );
-  }
 }
 
 .landing-backdrop img {
@@ -1039,18 +982,13 @@ body {
     rgb(0, 0, 0, 1) 70%
   );
   z-index: 2;
-  height: 112vh;
+  height: 80vw;
   width: 100vw;
 }
 
-@media screen and (max-width: 600px) {
-  .movie-view-overlay {
-    height: 55vh;
-  }
-}
 @media screen and (max-width: 440px) {
   .movie-view-overlay {
-    height: 50vh;
+    height: 120vw;
   }
 }
 
@@ -2728,14 +2666,10 @@ body {
   align-items: center;
   justify-content: center;
   height: 7vh;
-  width: 6vw;
+  width: 7vw;
   padding-left: 1vw;
   padding-right: 1vw;
   min-width: 50px;
-}
-
-.user-nav-wrapper:hover {
-  background-color: #333333;
 }
 
 .nav-pic-wrapper {
@@ -2837,7 +2771,7 @@ body {
   background-color: grey;
   margin-left: auto;
   margin-right: 4vw;
-  width: 6vw;
+  width: 7vw;
   min-width: 50px;
   padding-left: 10px;
   padding-right: 10px;
