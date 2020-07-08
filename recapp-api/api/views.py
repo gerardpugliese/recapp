@@ -273,23 +273,33 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         user = request.user
         profile = UserProfile.objects.get(user=user)
         #Get lists of all movies and shows the user has watched
-        watched_movies = Mark.objects.filter(user=user, state=2, media_type="movie")
-        watched_shows = Mark.objects.filter(user=user, state=2, media_type="tv")
+        #watched_movies = Mark.objects.filter(user=user, state=2, media_type="movie")
+        #watched_shows = Mark.objects.filter(user=user, state=2, media_type="tv")
+        profile.save()
+        serializer = UserProfileSerializer(profile, many=False)
+        response = {'user_profile': serializer.data}
+        return Response(response, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['GET'])
+    def negate_first_login(self, request, pk=None):
+        user = request.user
+        profile = UserProfile.objects.get(user=user)
+        profile.first_login = False
         profile.save()
         serializer = UserProfileSerializer(profile, many=False)
         response = {'user_profile': serializer.data}
         return Response(response, status=status.HTTP_200_OK)
 
-
     @action(detail=False, methods=['POST'])
-    def set_top_ten_movies(self, request, pk=None):
-        if 'top_ten' in request.data:
+    def set_profile_image(self, request, pk=None):
+        if 'image' in request.data:
             user = request.user
             profile = UserProfile.objects.get(user=user)
-            profile.top_ten_movies = request.data['top_ten']
+            profile.image = request.data['image']
             profile.save()
             serializer = UserProfileSerializer(profile, many=False)
             response = {'user_profile updated': serializer.data}
+            return Response(response, status=status.HTTP_200_OK)
 
 class MovieBackgroundViewSet(viewsets.ModelViewSet):
     queryset = MovieBackground.objects.all()

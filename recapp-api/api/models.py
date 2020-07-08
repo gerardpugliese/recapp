@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model): 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     #user image
-    image = models.ImageField(upload_to='profile_image', blank=True)
+    image = models.CharField(max_length=300, default='', blank=True)
     most_recent_movie = models.CharField(max_length=30, default='')
     most_recent_show = models.CharField(max_length=30, default='')
     first_login = models.BooleanField(default=True, blank=True)

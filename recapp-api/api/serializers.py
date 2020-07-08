@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('id', 'user', 'image', 'def_image', 'def_profile_image', 'movies_watched', 'shows_watched', 'most_recent_movie', 'most_recent_show', 'top_ten_movies', 'first_login')
+        fields = ('id', 'user', 'image', 'most_recent_movie', 'most_recent_show', 'first_login')
 
 class MarkSerializer(serializers.ModelSerializer):
     class Meta:
