@@ -509,7 +509,10 @@ class MovieView extends Component {
                     {this.state.movie_imdb_rating === "" ? (
                       <p className="rating-placeholder">N/A</p>
                     ) : (
-                      <Rating rating={this.state.movie_imdb_rating} />
+                      <Rating
+                        rating={this.state.movie_imdb_rating}
+                        type={"imdb"}
+                      />
                     )}
 
                     <img
@@ -520,7 +523,10 @@ class MovieView extends Component {
                     {this.state.movie_rottentomatoes_rating === "" ? (
                       <p className="rating-placeholder">N/A</p>
                     ) : (
-                      <Rating rating={this.state.movie_rottentomatoes_rating} />
+                      <Rating
+                        rating={this.state.movie_rottentomatoes_rating}
+                        type={"tomatoes"}
+                      />
                     )}
                     <Icons
                       item_id={this.state.movie_id}
