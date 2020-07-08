@@ -4,6 +4,8 @@ import { withCookies } from "react-cookie";
 class ActorRow extends Component {
   state = {
     token: this.props.cookies.get("recapp-token"),
+    default_actor_image:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Fnewactordefault.png?alt=media&token=24bee84d-b03b-47ee-8c89-a153b1b748c1",
   };
 
   openActorView() {
@@ -20,7 +22,7 @@ class ActorRow extends Component {
               <img
                 className="actor-default-img"
                 alt="default-actor"
-                src={this.props.def_image}
+                src={this.state.default_actor_image}
                 onClick={() => this.openActorView()}
               />
             </div>

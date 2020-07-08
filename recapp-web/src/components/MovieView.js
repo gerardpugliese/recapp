@@ -517,7 +517,6 @@ class MovieView extends Component {
                       alt="Rotten Tomatoes"
                       src={this.state.rottentomatoes_img}
                     />
-                    {console.log(this.state.movie_rottentomatoes_rating === "")}
                     {this.state.movie_rottentomatoes_rating === "" ? (
                       <p className="rating-placeholder">N/A</p>
                     ) : (
