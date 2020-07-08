@@ -24,11 +24,12 @@ class MovieView extends Component {
     token: this.props.cookies.get("recapp-token"),
     user_profile: {
       username: "",
-      image: "",
-      def_image: "",
-      highest_genre: "",
-      highest_movie: "",
+      movies_watched: "",
+      shows_watched: "",
+      highest_rated_movie: "",
+      highest_rated_show: "",
     },
+    profile_image: "",
     movie_id: this.props.cookies.get("movie-id"),
     movie_name: "",
     movie_img: "",
@@ -58,6 +59,8 @@ class MovieView extends Component {
     rottentomatoes_img:
       "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Ftomato-svg-logo-2.png?alt=media&token=5c874fca-90ba-4802-8541-9fa32bf05f1b",
     account_dropdown_visible: false,
+    default_profile_image:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Favatar.png?alt=media&token=9b08b6f9-dcd2-4244-b4a7-6f5511bdb82a",
   };
 
   showRating() {
@@ -93,12 +96,11 @@ class MovieView extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: process.env.REACT_APP_API_URL + results.image,
-            def_image: process.env.REACT_APP_API_URL + results.def_image,
-            highest_genre: results.highest_rated_genre,
-            highest_movie: results.highest_rated_movie,
+            movies_watched: results.movies_watched,
+            shows_watched: results.shows_watched,
           },
-          recent_movie: results.most_recent_movie,
+          profile_image: results.image,
+          first_login: results.first_login,
         });
       })
       .catch((err) => console.log(err));
@@ -418,11 +420,19 @@ class MovieView extends Component {
               onMouseLeave={() => this.hideAccountDropdown()}
             >
               <div className="nav-pic-wrapper">
-                <img
-                  alt="user-profile"
-                  className="nav-user-profile-pic"
-                  src={this.state.user_profile.image}
-                />
+                {this.state.profile_image === "" ? (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.default_profile_image}
+                  />
+                ) : (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.profile_image}
+                  />
+                )}
               </div>
             </Link>
           </Nav>

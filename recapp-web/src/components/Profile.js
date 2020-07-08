@@ -30,12 +30,12 @@ class Profile extends Component {
     token: this.props.cookies.get("recapp-token"),
     user_profile: {
       username: "",
-      image: "",
-      def_image: "",
-      def_profile_img: "",
       movies_watched: "",
       shows_watched: "",
+      highest_rated_movie: "",
+      highest_rated_show: "",
     },
+    profile_image: "",
     most_recent_movie: "",
     view_favorites: true,
     view_watched: false,
@@ -53,6 +53,8 @@ class Profile extends Component {
     filters_to_apply: [],
     show_top_ten: false,
     account_dropdown_visible: false,
+    default_profile_image:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Favatar.png?alt=media&token=9b08b6f9-dcd2-4244-b4a7-6f5511bdb82a",
   };
 
   setTopTen(name, img, number, id, media_type) {
@@ -335,16 +337,11 @@ class Profile extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: process.env.REACT_APP_API_URL + results.image,
-            def_image: process.env.REACT_APP_API_URL + results.def_image,
-            def_profile_img:
-              process.env.REACT_APP_API_URL + results.def_profile_image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
-            highest_rated_movie: results.highest_rated_movie,
-            highest_rated_show: results.highest_rated_show,
           },
-          most_recent_movie: results.most_recent_movie,
+          profile_image: results.image,
+          first_login: results.first_login,
         });
       })
       .catch((err) => console.log(err));
@@ -596,11 +593,19 @@ class Profile extends Component {
                 onMouseLeave={() => this.hideAccountDropdown()}
               >
                 <div className="nav-pic-wrapper">
-                  <img
-                    alt="user-profile"
-                    className="nav-user-profile-pic"
-                    src={this.state.user_profile.image}
-                  />
+                  {this.state.profile_image === "" ? (
+                    <img
+                      alt="user-profile"
+                      className="nav-user-profile-pic"
+                      src={this.state.default_profile_image}
+                    />
+                  ) : (
+                    <img
+                      alt="user-profile"
+                      className="nav-user-profile-pic"
+                      src={this.state.profile_image}
+                    />
+                  )}
                 </div>
               </Link>
             </Nav>
@@ -642,11 +647,19 @@ class Profile extends Component {
               <div className="profile-image-wrapper">
                 <div className="image-name-wrapper">
                   <div className="profile-user-wrapper">
-                    <img
-                      alt="user-profile"
-                      className="profile-image"
-                      src={this.state.user_profile.image}
-                    />
+                    {this.state.user_profile.image === "" ? (
+                      <img
+                        alt="user-profile"
+                        className="profile-image"
+                        src={this.state.default_profile_image}
+                      />
+                    ) : (
+                      <img
+                        alt="user-profile"
+                        className="profile-image"
+                        src={this.state.profile_image}
+                      />
+                    )}
                     <p className="profile-username">
                       {this.state.user_profile.username}
                     </p>

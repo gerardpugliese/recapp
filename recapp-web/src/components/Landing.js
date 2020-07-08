@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, Fragment } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
@@ -6,6 +6,7 @@ import MovieRow from "./MovieRow";
 import ShowRow from "./ShowRow";
 import { withCookies } from "react-cookie";
 import Cookies from "universal-cookie";
+import { storage } from "../firebase";
 
 const cookies = new Cookies();
 
@@ -23,16 +24,22 @@ class Landing extends Component {
     in_theaters: [],
     user_profile: {
       username: "",
-      image: "",
       movies_watched: "",
       shows_watched: "",
       highest_rated_movie: "",
       highest_rated_show: "",
     },
+    profile_image: "",
+    first_login: "",
     most_recent_movie: "",
     similar_movies: [],
     search_results: [],
     account_dropdown_visible: false,
+    profile_picture: "",
+    profile_picture_selected: false,
+    profile_pic_name: "",
+    default_profile_image:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Favatar.png?alt=media&token=9b08b6f9-dcd2-4244-b4a7-6f5511bdb82a",
   };
 
   loadMovies() {
@@ -200,10 +207,11 @@ class Landing extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: process.env.REACT_APP_API_URL + results.image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
           },
+          profile_image: results.image,
+          first_login: results.first_login,
           most_recent_movie: latest_movie,
         });
         if (latest_movie !== "") {
@@ -336,6 +344,73 @@ class Landing extends Component {
     boundObject.performSearch(searchTerm);
   }
 
+  handleProfilePicChange = (e) => {
+    if (e.target.files[0]) {
+      this.setState({
+        profile_picture: e.target.files[0],
+        profile_pic_name: e.target.files[0].name,
+        profile_picture_selected: true,
+      });
+    }
+
+    console.log(e.target.files[0]);
+  };
+
+  handleProfilePicUpload = () => {
+    let profile_pic = this.state.profile_picture;
+    const uploadTask = storage
+      .ref(`images/${profile_pic.name}`)
+      .put(profile_pic);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(profile_pic.name)
+          .getDownloadURL()
+          .then((url) => {
+            const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/set_profile_image/`;
+            fetch(urlString, {
+              method: "POST",
+              headers: {
+                Authorization: `Token ${this.state.token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                image: url,
+              }),
+            })
+              .then((resp) => resp.text())
+              .then((res) => {
+                console.log(res);
+                this.setState({ profile_image: url, first_login: false });
+              })
+              .catch((err) => console.log(err));
+          });
+      }
+    );
+  };
+
+  handlePicIgnore() {
+    this.setState({
+      first_login: false,
+    });
+    const urlString = `${process.env.REACT_APP_API_URL}/api/userprofile/negate_first_login/`;
+    fetch(urlString, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${this.state.token}`,
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className="explore-1-wrapper">
@@ -380,11 +455,19 @@ class Landing extends Component {
               onMouseLeave={() => this.hideAccountDropdown()}
             >
               <div className="nav-pic-wrapper">
-                <img
-                  alt="user-profile"
-                  className="nav-user-profile-pic"
-                  src={this.state.user_profile.image}
-                />
+                {this.state.profile_image === "" ? (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.default_profile_image}
+                  />
+                ) : (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.profile_image}
+                  />
+                )}
               </div>
             </Link>
           </Nav>
@@ -416,6 +499,54 @@ class Landing extends Component {
             )}
           </div>
           <div className="landing-backdrop-overlay"></div>
+          {this.state.first_login === true && (
+            <div className="first-login-wrapper">
+              <div className="first-login-content">
+                <p className="first-login-text">
+                  Welcome to <p className="first-login-logo">RECAPP</p>!
+                </p>
+                <p className="first-login-upload-link">
+                  Choose a profile picture.
+                </p>
+                <input
+                  className="first-login-input"
+                  type="file"
+                  name="file"
+                  id="file"
+                  onChange={this.handleProfilePicChange}
+                />
+                <label for="file">
+                  <i className="fas fa-image first-login-icon"></i>
+                  Pick an image
+                </label>
+                <br />
+                {this.state.profile_picture_selected === true && (
+                  <div className="first-login-confirm-pic">
+                    <p className="first-login-pic-name">
+                      {this.state.profile_pic_name}
+                    </p>
+                    <button
+                      className="first-login-button"
+                      onClick={this.handleProfilePicUpload}
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                )}
+                {this.state.profile_picture_selected === false && (
+                  <Fragment>
+                    <p className="first-login-upload-link">OR</p>
+                    <p
+                      className="first-login-ignore-link"
+                      onClick={this.handlePicIgnore.bind(this)}
+                    >
+                      Set it up later.
+                    </p>
+                  </Fragment>
+                )}
+              </div>
+            </div>
+          )}
           <div id="search-results">
             <Animated
               animationIn="fadeIn"

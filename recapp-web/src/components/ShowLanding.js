@@ -19,15 +19,19 @@ class ShowLanding extends Component {
     token: this.props.cookies.get("recapp-token"),
     user_profile: {
       username: "",
-      image: "",
       movies_watched: "",
       shows_watched: "",
+      highest_rated_movie: "",
+      highest_rated_show: "",
     },
+    profile_image: "",
     most_recent_show: "",
     search_results: [],
     shows_on_air: [],
     shows_trending: [],
     account_dropdown_visible: false,
+    default_profile_image:
+      "https://firebasestorage.googleapis.com/v0/b/my-recapp.appspot.com/o/images%2Favatar.png?alt=media&token=9b08b6f9-dcd2-4244-b4a7-6f5511bdb82a",
   };
 
   loadShows() {
@@ -102,10 +106,10 @@ class ShowLanding extends Component {
         this.setState({
           user_profile: {
             username: this.props.cookies.get("recapp-username"),
-            image: process.env.REACT_APP_API_URL + results.image,
             movies_watched: results.movies_watched,
             shows_watched: results.shows_watched,
           },
+          profile_image: results.image,
           most_recent_show: latest_show,
         });
         if (latest_show !== "") {
@@ -254,11 +258,19 @@ class ShowLanding extends Component {
               onMouseLeave={() => this.hideAccountDropdown()}
             >
               <div className="nav-pic-wrapper">
-                <img
-                  alt="user-profile"
-                  className="nav-user-profile-pic"
-                  src={this.state.user_profile.image}
-                />
+                {this.state.profile_image === "" ? (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.default_profile_image}
+                  />
+                ) : (
+                  <img
+                    alt="user-profile"
+                    className="nav-user-profile-pic"
+                    src={this.state.profile_image}
+                  />
+                )}
               </div>
             </Link>
           </Nav>
