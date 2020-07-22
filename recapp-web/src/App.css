@@ -113,6 +113,13 @@ body {
   display: flex;
 }
 
+@media screen and (max-width: 650px) {
+  .default-img-bkg {
+    width: 200px;
+    height: 300px;
+  }
+}
+
 .actor-default-img {
   max-width: 100%;
   width: 100%;
@@ -202,6 +209,7 @@ body {
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10vh;
 }
 
 .credits-list-header {
@@ -221,12 +229,23 @@ body {
   font-family: "Palanquin Dark", sans-serif;
   font-size: 1.2vw;
   height: 35vh;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.credits-info-bio::-webkit-scrollbar {
+  width: 10px;
+}
+
+.credits-info-bio::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #737272;
+  border: 1px solid #000;
 }
 
 .credits-results {
   margin-top: 10vh;
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -584,6 +603,12 @@ body {
 
 .lists-wrapper-left {
   overflow: scroll;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.lists-wrapper-left::-webkit-scrollbar {
+  display: none;
 }
 
 .landing-text-wrapper {
@@ -605,7 +630,14 @@ body {
 .list-movie-wrapper {
   display: flex;
   overflow: scroll;
+  -ms-overflow-style: none;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.list-movie-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 /* END OF Landing & ShowLanding CLASSES */
 
 /* START OF Login CLASSES */
@@ -710,7 +742,6 @@ body {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  background: rgb(223, 28, 41);
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -719,9 +750,9 @@ body {
 }
 
 .login-error-text {
-  color: white;
-  font-size: 2.5vh;
-  font-family: "Arial";
+  color: red;
+  font-size: 2vh;
+  font-family: "Palanquin Dark", sans-serif;
   margin: 0;
   height: 100%;
 }
@@ -1000,7 +1031,7 @@ body {
 }
 
 .row-1 {
-  width: 75%;
+  width: 90%;
   height: 60vh;
   display: flex;
   margin-left: auto;
@@ -1152,7 +1183,7 @@ body {
   }
 
   .credits-info-bio {
-    font-size: 1.5vw;
+    font-size: 1.8vw;
   }
 
   .credits-info-birthplace {
@@ -1245,21 +1276,11 @@ body {
 }
 
 .row-2 {
-  width: 75%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3vh;
   margin-bottom: 10vh;
-}
-
-@media screen and (max-width: 600px) {
-  .row-1 {
-    width: 85%;
-  }
-
-  .row-2 {
-    width: 85%;
-  }
 }
 
 .cast-header {
@@ -1284,6 +1305,12 @@ body {
   overflow-x: scroll;
   border-top: 3px #84142d solid;
   padding-top: 2vh;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.results-row::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 650px) {
@@ -1699,6 +1726,12 @@ body {
   display: flex;
   overflow-x: scroll;
   flex-wrap: wrap;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.profile-favorites::-webkit-scrollbar {
+  display: none;
 }
 
 .profile-interests {
@@ -1708,6 +1741,12 @@ body {
   display: flex;
   overflow-x: scroll;
   flex-wrap: wrap;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.profile-interests::-webkit-scrollbar {
+  display: none;
 }
 
 .profile-watched {
@@ -1717,6 +1756,12 @@ body {
   display: flex;
   overflow-x: scroll;
   flex-wrap: wrap;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.profile-watched::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 650px) {
@@ -2058,7 +2103,6 @@ body {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  background: rgb(223, 28, 41);
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -2067,9 +2111,9 @@ body {
 }
 
 .error-text {
-  color: white;
+  color: red;
   font-size: 2.5vh;
-  font-family: "Arial";
+  font-family: "Palanquin Dark ", sans-serif;
   margin: 0;
   height: 100%;
 }
@@ -2137,10 +2181,10 @@ body {
   .register-form-error-wrapper {
     width: 55vw;
     height: 3.5vh;
+    background: none;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    background: rgb(223, 28, 41);
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -2149,6 +2193,7 @@ body {
   }
   .error-text {
     font-size: 2vh;
+    font-family: "Palanquin Dark ", sans-serif;
   }
   .register-form-label-wrapper {
     width: 55vw;
@@ -2207,6 +2252,13 @@ body {
 .default-movie-row:hover {
   cursor: pointer;
   border: 3px #84142d solid;
+}
+
+@media screen and (max-width: 650px) {
+  .default-movie-row {
+    width: 200px;
+    height: 300px;
+  }
 }
 
 /* END OF ShowRow CLASSES */
@@ -2659,6 +2711,12 @@ body {
   z-index: 4;
   margin-top: 7vh;
   top: 0;
+}
+
+@media screen and (max-width: 650px) {
+  #search-results {
+    height: 55vh;
+  }
 }
 
 .user-nav-wrapper {

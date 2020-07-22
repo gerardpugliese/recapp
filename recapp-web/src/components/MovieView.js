@@ -206,7 +206,7 @@ class MovieView extends Component {
 
   getSimilarMovie() {
     var similar = [];
-    const movieInfoURL = `https://api.themoviedb.org/3/movie/${this.state.movie_id}/recommendations?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US&include_image_language=en,null`;
+    const movieInfoURL = `https://api.themoviedb.org/3/movie/${this.state.movie_id}/similar?api_key=c69a9bc66efca73bdac1c765494a3655&language=en-US&include_image_language=en,null`;
     fetch(movieInfoURL, {
       method: "GET",
     })

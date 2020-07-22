@@ -196,8 +196,11 @@ class ActorView extends Component {
   }
 
   sanitizeDate(date) {
-    let split_date = date.split("-");
-    return split_date[1] + "/" + split_date[2] + "/" + split_date[0];
+    if (date !== null) {
+      let split_date = date.split("-");
+      return split_date[1] + "/" + split_date[2] + "/" + split_date[0];
+    }
+    return;
   }
 
   componentDidMount() {

@@ -79,9 +79,26 @@ class Register extends Component {
   };
 
   register = (event) => {
-    if (
-      this.state.credentials.password === this.state.credentials.confirmPassword
+    let error = "";
+    let verified = false;
+    if (this.state.credentials.username === "") {
+      error = "Error: Username cannot be blank";
+    } else if (this.state.credentials.password === "") {
+      error = "Error: Password cannot be blank.";
+    } else if (
+      this.state.credentials.password !== this.state.credentials.confirmPassword
     ) {
+      error = "Error: Passwords do not match.";
+    } else if (this.state.credentials.email === "") {
+      if (this.state.credentials.username === "") {
+        error = "Error: Username cannot be blank.";
+      } else {
+        error = "Error: Email cannot be blank.";
+      }
+    } else {
+      verified = true;
+    }
+    if (verified == true) {
       fetch(`${process.env.REACT_APP_API_URL}/api/users/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -93,7 +110,7 @@ class Register extends Component {
         })
         .catch((err) => console.log(err));
     } else {
-      this.displayError("Error: Passwords do not match.");
+      this.displayError(error);
     }
   };
 

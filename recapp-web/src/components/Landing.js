@@ -586,7 +586,7 @@ class Landing extends Component {
                   <div className="list-movie-wrapper">{this.state.popular}</div>
                 </div>
                 <div className="landing-text-wrapper landing-bottom">
-                  <p className="landing-text">MOVIES IN THEATERS</p>
+                  <p className="landing-text">NEW MOVIES</p>
                 </div>
                 <div className="movie-carousel">
                   <div className="list-movie-wrapper">
