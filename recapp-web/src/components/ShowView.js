@@ -326,74 +326,105 @@ class ShowView extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Navbar
-          className="title-bar"
-          style={{ position: "fixed", top: 0, padding: 0 }}
-        >
-          <Nav className="mr-auto">
-            <Link to="/landing" className="explore-navbar-logo">
-              <i className="fas fa-video explore-logo-icon align-vertically"></i>
-
-              <p className="explore-logo-text">RECAPP</p>
-            </Link>
-            <Link
-              to="/landing"
-              className="navbar-inactive non-user-nav-wrapper"
-            >
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-left": "10px" }}
+        {this.state.token === undefined ? (
+          <Navbar className="title-bar">
+            <Nav className="mr-auto">
+              <Link to="/" className="explore-navbar-logo">
+                <i className="fas fa-video  align-vertically explore-logo-icon"></i>
+                <p className="explore-logo-text">RECAPP</p>
+              </Link>
+            </Nav>
+            <Nav className="ml-auto">
+              <Link
+                to="/login"
+                className="navbar-inactive non-user-nav-wrapper"
               >
-                FILMS
-              </p>
-            </Link>
-            <Link to="/shows" className="navbar-inactive non-user-nav-wrapper">
-              <p
-                className="non-user-nav-text"
-                style={{ "margin-right": "10px" }}
+                SIGN IN
+              </Link>
+              <Link
+                to="/register"
+                className="navbar-inactive non-user-nav-wrapper"
               >
-                SHOWS
-              </p>
-            </Link>
-            <div className="search-bar-wrapper">
-              <i className="fas fa-search"></i>
-              <input
-                className="search-bar"
-                placeholder="Search..."
-                onClick={() => {
-                  document.getElementById("search-results").style.display =
-                    "block";
-                }}
-                onChange={this.searchChangeHandler.bind(this)}
-              ></input>
-            </div>
-          </Nav>
+                REGISTER
+              </Link>
+              <Link to="/explore" className="navbar-active nav-margin-right">
+                EXPLORE
+              </Link>
+            </Nav>
+          </Navbar>
+        ) : (
+          <Navbar
+            className="title-bar"
+            style={{ position: "fixed", top: 0, padding: 0 }}
+          >
+            <Nav className="mr-auto">
+              <Link to="/landing" className="explore-navbar-logo">
+                <i className="fas fa-video explore-logo-icon align-vertically"></i>
 
-          <Nav className="ml-auto nav-right nav-info">
-            <Link
-              to="/profile"
-              className="navbar-inactive user-nav-wrapper "
-              onMouseEnter={() => this.showAccountDropdown()}
-              onMouseLeave={() => this.hideAccountDropdown()}
-            >
-              <div className="nav-pic-wrapper">
-                {this.state.profile_image === "" ? (
-                  <img
-                    alt="user-profile"
-                    className="nav-user-profile-pic"
-                    src={this.state.default_profile_image}
-                  />
-                ) : (
-                  <img
-                    alt="user-profile"
-                    className="nav-user-profile-pic"
-                    src={this.state.profile_image}
-                  />
-                )}
+                <p className="explore-logo-text">RECAPP</p>
+              </Link>
+              <Link
+                to="/landing"
+                className="navbar-inactive non-user-nav-wrapper"
+              >
+                <p
+                  className="non-user-nav-text"
+                  style={{ "margin-left": "10px" }}
+                >
+                  FILMS
+                </p>
+              </Link>
+              <Link
+                to="/shows"
+                className="navbar-inactive non-user-nav-wrapper"
+              >
+                <p
+                  className="non-user-nav-text"
+                  style={{ "margin-right": "10px" }}
+                >
+                  SHOWS
+                </p>
+              </Link>
+              <div className="search-bar-wrapper">
+                <i className="fas fa-search"></i>
+                <input
+                  className="search-bar"
+                  placeholder="Search..."
+                  onClick={() => {
+                    document.getElementById("search-results").style.display =
+                      "block";
+                  }}
+                  onChange={this.searchChangeHandler.bind(this)}
+                ></input>
               </div>
-            </Link>
-          </Nav>
-        </Navbar>
+            </Nav>
+
+            <Nav className="ml-auto nav-right nav-info">
+              <Link
+                to="/profile"
+                className="navbar-inactive user-nav-wrapper "
+                onMouseEnter={() => this.showAccountDropdown()}
+                onMouseLeave={() => this.hideAccountDropdown()}
+              >
+                <div className="nav-pic-wrapper">
+                  {this.state.profile_image === "" ? (
+                    <img
+                      alt="user-profile"
+                      className="nav-user-profile-pic"
+                      src={this.state.default_profile_image}
+                    />
+                  ) : (
+                    <img
+                      alt="user-profile"
+                      className="nav-user-profile-pic"
+                      src={this.state.profile_image}
+                    />
+                  )}
+                </div>
+              </Link>
+            </Nav>
+          </Navbar>
+        )}
         {this.state.account_dropdown_visible && (
           <div id="account-dropdown">
             <div
@@ -460,14 +491,16 @@ class ShowView extends Component {
                   <p className="movie-title">{this.state.show_name} </p>
                   <div className="movie-rating">
                     Rating: <Rating rating={this.state.show_rating} />
-                    <Icons
-                      item_id={this.state.show_id}
-                      state={this.state.show_state}
-                      is_favorite={this.state.is_favorite}
-                      media_type="tv"
-                      callback_function={this.showRating.bind(this)}
-                      ref={this.iconElement}
-                    />
+                    {this.state.token !== undefined && (
+                      <Icons
+                        item_id={this.state.show_id}
+                        state={this.state.show_state}
+                        is_favorite={this.state.is_favorite}
+                        media_type="tv"
+                        callback_function={this.showRating.bind(this)}
+                        ref={this.iconElement}
+                      />
+                    )}
                   </div>
                   <div className="movie-year">
                     <p>{this.sanitizeRelease(this.state.show_release)}</p>
